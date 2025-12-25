@@ -10,18 +10,20 @@ const styles = {
     justifyContent: 'center',
     background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
     fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-    padding: '2rem'
+    padding: '1rem'
   },
+  
   signupCard: {
     background: '#ffffff',
     border: '1px solid #e2e8f0',
     borderRadius: '12px',
-    padding: '2.5rem',
+    padding: '2rem',
     width: '100%',
-    maxWidth: '480px',
+    maxWidth: '550px',
     boxShadow: '0 10px 40px rgba(0, 0, 0, 0.08)',
     animation: 'slideUp 0.6s ease-out'
   },
+  
   logo: {
     fontSize: '2rem',
     fontWeight: '600',
@@ -30,6 +32,7 @@ const styles = {
     marginBottom: '0.5rem',
     letterSpacing: '-0.025em'
   },
+  
   welcomeText: {
     fontSize: '1.5rem',
     fontWeight: '600',
@@ -37,12 +40,14 @@ const styles = {
     textAlign: 'center',
     marginBottom: '0.25rem'
   },
+  
   subtitle: {
     color: '#64748b',
     fontSize: '0.95rem',
     textAlign: 'center',
     marginBottom: '1.5rem'
   },
+  
   roleSelector: {
     width: '100%',
     padding: '0.9rem 1rem',
@@ -51,7 +56,7 @@ const styles = {
     borderRadius: '8px',
     color: '#1e293b',
     fontSize: '1rem',
-    marginBottom: '1.25rem',
+    marginBottom: '1rem',
     transition: 'all 0.2s ease',
     outline: 'none',
     appearance: 'none',
@@ -59,16 +64,9 @@ const styles = {
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'right 1rem center',
     backgroundSize: '16px',
-    cursor: 'pointer',
-    '&:focus': {
-      borderColor: '#2563eb',
-      boxShadow: '0 0 0 3px rgba(37, 99, 235, 0.1)'
-    }
+    cursor: 'pointer'
   },
-  roleOption: {
-    backgroundColor: '#ffffff',
-    color: '#1e293b'
-  },
+  
   inputField: {
     width: '100%',
     padding: '0.9rem 1rem',
@@ -80,24 +78,18 @@ const styles = {
     marginBottom: '1rem',
     transition: 'all 0.2s ease',
     outline: 'none',
-    boxSizing: 'border-box',
-    '&:focus': {
-      borderColor: '#2563eb',
-      boxShadow: '0 0 0 3px rgba(37, 99, 235, 0.1)'
-    }
+    boxSizing: 'border-box'
   },
-  formRow: {
-    display: 'flex',
-    gap: '1rem',
-    marginBottom: '1rem'
-  },
+  
   formGroup: {
     flex: 1
   },
+  
   passwordContainer: {
     position: 'relative',
     marginBottom: '1rem'
   },
+  
   passwordToggle: {
     position: 'absolute',
     right: '1rem',
@@ -108,11 +100,9 @@ const styles = {
     color: '#64748b',
     cursor: 'pointer',
     fontSize: '1.1rem',
-    padding: '0.25rem',
-    '&:hover': {
-      color: '#2563eb'
-    }
+    padding: '0.25rem'
   },
+  
   signupButton: {
     width: '100%',
     padding: '0.9rem',
@@ -124,77 +114,48 @@ const styles = {
     fontWeight: '600',
     cursor: 'pointer',
     transition: 'all 0.2s ease',
-    marginTop: '0.5rem',
-    '&:hover': {
-      backgroundColor: '#1d4ed8',
-      transform: 'translateY(-1px)'
-    },
-    '&:disabled': {
-      backgroundColor: '#94a3b8',
-      cursor: 'not-allowed',
-      transform: 'none'
-    }
+    marginTop: '0.5rem'
   },
+  
   loginLink: {
     textAlign: 'center',
     marginTop: '1.5rem',
     color: '#64748b',
     fontSize: '0.9rem'
   },
+  
   loginText: {
     color: '#2563eb',
     textDecoration: 'none',
     fontWeight: '600',
-    marginLeft: '0.5rem',
-    '&:hover': {
-      textDecoration: 'underline'
-    }
+    marginLeft: '0.5rem'
   },
+  
   errorMessage: {
     backgroundColor: '#fee2e2',
     border: '1px solid #fecaca',
     color: '#dc2626',
     padding: '0.75rem 1rem',
     borderRadius: '8px',
-    marginBottom: '1.25rem',
+    marginBottom: '1rem',
     fontSize: '0.85rem',
     textAlign: 'center'
   },
-  successMessage: {
-    backgroundColor: '#dcfce7',
-    border: '1px solid #bbf7d0',
-    color: '#16a34a',
-    padding: '0.75rem 1rem',
-    borderRadius: '8px',
-    marginBottom: '1.25rem',
-    fontSize: '0.85rem',
-    textAlign: 'center'
-  },
+  
   roleIndicator: {
     display: 'inline-block',
     padding: '0.5rem 1rem',
     borderRadius: '8px',
     fontSize: '0.85rem',
     fontWeight: '600',
-    marginBottom: '1.25rem',
+    marginBottom: '1rem',
     textAlign: 'center',
-    width: '100%'
-  },
-  patientIndicator: {
+    width: '100%',
     background: '#f0f9ff',
     color: '#2563eb',
     border: '1px solid #dbeafe'
   },
-  doctorIndicator: {
-    background: '#f0f9ff',
-    color: '#2563eb',
-    border: '1px solid #dbeafe'
-  },
-  hospitalIndicator: {
-    background: '#f0f9ff',
-    color: '#2563eb',
-    border: '1px solid #dbeafe'
-  },
+  
   loadingSpinner: {
     display: 'inline-block',
     width: '20px',
@@ -202,8 +163,9 @@ const styles = {
     border: '2px solid rgba(255, 255, 255, 0.3)',
     borderRadius: '50%',
     borderTopColor: '#ffffff',
-    animation: '$spin 1s ease-in-out infinite'
+    animation: 'spin 1s ease-in-out infinite'
   },
+  
   formLabel: {
     display: 'block',
     color: '#475569',
@@ -211,34 +173,28 @@ const styles = {
     fontWeight: '500',
     marginBottom: '0.5rem'
   },
-  // Animations
-  '@keyframes spin': {
-    '0%': { transform: 'rotate(0deg)' },
-    '100%': { transform: 'rotate(360deg)' }
+
+  hospitalInfo: {
+    backgroundColor: '#f8fafc',
+    border: '1px solid #e2e8f0',
+    borderRadius: '8px',
+    padding: '1rem',
+    marginBottom: '1rem',
+    fontSize: '0.85rem',
+    color: '#475569'
   },
-  '@keyframes slideUp': {
-    from: {
-      opacity: 0,
-      transform: 'translateY(20px)'
-    },
-    to: {
-      opacity: 1,
-      transform: 'translateY(0)'
-    }
+
+  infoIcon: {
+    display: 'inline-block',
+    marginRight: '0.5rem',
+    color: '#2563eb'
   }
 };
 
-// Global CSS for hover effects
-const globalStyles = `
+const signupGlobalStyles = `
   @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
   
   @keyframes spin {
@@ -250,31 +206,11 @@ const globalStyles = `
     border-color: #2563eb !important;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
   }
-  
-  .signup-button:hover:not(:disabled) {
-    background-color: #1d4ed8 !important;
-    transform: translateY(-1px) !important;
-  }
-  
-  .login-link:hover {
-    color: #1d4ed8 !important;
-    text-decoration: underline !important;
-  }
-  
-  .password-toggle:hover {
-    color: #2563eb !important;
-  }
-  
-  .role-selector:focus {
-    border-color: #2563eb !important;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
-  }
 `;
 
-// Add global styles to document
 if (typeof document !== 'undefined') {
   const styleElement = document.createElement('style');
-  styleElement.textContent = globalStyles;
+  styleElement.textContent = signupGlobalStyles;
   document.head.appendChild(styleElement);
 }
 
@@ -284,9 +220,10 @@ function Signup({ onLogin }) {
     password: '',
     role: 'patient',
     name: '',
-    age: '',
     phone: '',
-    specialization: ''
+    hospitalName: '',
+    address: '',
+    licenseNumber: ''
   });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
@@ -298,14 +235,12 @@ function Signup({ onLogin }) {
     setError('');
     setLoading(true);
 
-    // Basic validation
     if (!formData.email || !formData.password || !formData.name) {
       setError('Please fill in all required fields');
       setLoading(false);
       return;
     }
 
-    // Email validation regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       setError('Please enter a valid email address');
@@ -313,30 +248,32 @@ function Signup({ onLogin }) {
       return;
     }
 
-    // Password strength validation
     if (formData.password.length < 6) {
       setError('Password must be at least 6 characters long');
       setLoading(false);
       return;
     }
 
-    // Role-specific validation
-    if (formData.role === 'patient') {
-      if (!formData.age || !formData.phone) {
-        setError('Please fill in age and phone number for patient registration');
+    if (formData.role === 'patient' && !formData.phone) {
+      setError('Please fill in phone number for patient registration');
+      setLoading(false);
+      return;
+    }
+
+    if (formData.role === 'hospital') {
+      if (!formData.hospitalName) {
+        setError('Please enter hospital name');
+        setLoading(false);
+        return;
+      }
+      if (!formData.address) {
+        setError('Please enter hospital address');
         setLoading(false);
         return;
       }
     }
 
-    if (formData.role === 'doctor' && !formData.specialization) {
-      setError('Please enter your specialization');
-      setLoading(false);
-      return;
-    }
-
     try {
-      // Create the data to send based on role
       const signupData = {
         email: formData.email,
         password: formData.password,
@@ -344,48 +281,49 @@ function Signup({ onLogin }) {
         name: formData.name
       };
 
-      // Add role-specific fields
       if (formData.role === 'patient') {
-        signupData.age = formData.age;
         signupData.phone = formData.phone;
-      } else if (formData.role === 'doctor') {
-        signupData.specialization = formData.specialization;
+      } else if (formData.role === 'hospital') {
+        signupData.hospitalName = formData.hospitalName;
+        signupData.address = formData.address;
+        signupData.licenseNumber = formData.licenseNumber;
       }
 
       const res = await axios.post('http://localhost:5000/api/auth/signup', signupData);
-      onLogin(res.data.token);
-      navigate('/');
+      
+      if (res.data.token && res.data.user) {
+        onLogin(res.data.token, res.data.user);
+        navigate('/landing');
+      } else {
+        setError('Signup successful but login failed. Please login manually.');
+        setTimeout(() => {
+          navigate('/login');
+        }, 2000);
+      }
     } catch (err) {
-      setError(err.response?.data?.message || 'Signup failed. Please try again.');
-      console.error('Signup error:', err);
+      const errorMsg = err.response?.data?.error || err.response?.data?.message || 'Signup failed. Please try again.';
+      setError(errorMsg);
     } finally {
       setLoading(false);
     }
   };
 
-  const getRoleIndicatorStyle = () => {
+  const getRoleText = () => {
     switch (formData.role) {
-      case 'patient':
-        return { ...styles.roleIndicator, ...styles.patientIndicator };
-      case 'doctor':
-        return { ...styles.roleIndicator, ...styles.doctorIndicator };
-      case 'hospital':
-        return { ...styles.roleIndicator, ...styles.hospitalIndicator };
-      default:
-        return styles.roleIndicator;
+      case 'patient': return 'Patient Registration';
+      case 'hospital': return 'Hospital Registration';
+      default: return 'User Registration';
     }
   };
 
-  const getRoleText = () => {
+  const getHospitalInfoText = () => {
     switch (formData.role) {
       case 'patient':
-        return 'Patient Registration';
-      case 'doctor':
-        return 'Doctor Registration';
+        return 'Patients can book appointments and view queue status.';
       case 'hospital':
-        return 'Hospital Registration';
+        return 'Hospitals can manage doctors, appointment schedules, and patient queues.';
       default:
-        return 'User Registration';
+        return '';
     }
   };
 
@@ -396,34 +334,40 @@ function Signup({ onLogin }) {
         <h2 style={styles.welcomeText}>Create Account</h2>
         <p style={styles.subtitle}>Join our OPD Queue Management System</p>
 
-        <div style={getRoleIndicatorStyle()}>
+        <div style={styles.roleIndicator}>
           {getRoleText()}
         </div>
 
         {error && (
           <div style={styles.errorMessage}>
-            {error}
+            ⚠️ {error}
           </div>
         )}
+
+        <div style={styles.hospitalInfo}>
+          <span style={styles.infoIcon}>ℹ️</span>
+          {getHospitalInfoText()}
+        </div>
 
         <form onSubmit={handleSubmit}>
           <select
             value={formData.role}
             onChange={(e) => setFormData({...formData, role: e.target.value})}
             style={styles.roleSelector}
-            className="role-selector"
             disabled={loading}
+            className="signup-input"
           >
-            <option value="patient" style={styles.roleOption}>Patient</option>
-            <option value="doctor" style={styles.roleOption}>Doctor</option>
-            <option value="hospital" style={styles.roleOption}>Hospital</option>
+            <option value="patient">Patient</option>
+            <option value="hospital">Hospital</option>
           </select>
 
           <div style={styles.formGroup}>
-            <span style={styles.formLabel}>Full Name</span>
+            <span style={styles.formLabel}>
+              {formData.role === 'hospital' ? 'Contact Person Name *' : 'Full Name *'}
+            </span>
             <input
               type="text"
-              placeholder="Enter your full name"
+              placeholder={formData.role === 'hospital' ? "Enter contact person name" : "Enter your full name"}
               value={formData.name}
               onChange={(e) => setFormData({...formData, name: e.target.value})}
               style={styles.inputField}
@@ -434,7 +378,7 @@ function Signup({ onLogin }) {
           </div>
 
           <div style={styles.formGroup}>
-            <span style={styles.formLabel}>Email Address</span>
+            <span style={styles.formLabel}>Email Address *</span>
             <input
               type="email"
               placeholder="Enter your email address"
@@ -448,7 +392,7 @@ function Signup({ onLogin }) {
           </div>
 
           <div style={styles.passwordContainer}>
-            <span style={styles.formLabel}>Password</span>
+            <span style={styles.formLabel}>Password *</span>
             <input
               type={showPassword ? 'text' : 'password'}
               placeholder="Enter password (min. 6 characters)"
@@ -463,55 +407,22 @@ function Signup({ onLogin }) {
               type="button"
               onClick={() => setShowPassword(!showPassword)}
               style={styles.passwordToggle}
-              className="password-toggle"
               aria-label={showPassword ? "Hide password" : "Show password"}
+              disabled={loading}
             >
               {showPassword ? '🙈' : '👁️'}
             </button>
           </div>
 
           {formData.role === 'patient' && (
-            <div style={styles.formRow}>
-              <div style={styles.formGroup}>
-                <span style={styles.formLabel}>Age</span>
-                <input
-                  type="number"
-                  placeholder="Age"
-                  value={formData.age}
-                  onChange={(e) => setFormData({...formData, age: e.target.value})}
-                  style={styles.inputField}
-                  className="signup-input"
-                  required
-                  disabled={loading}
-                  min="1"
-                  max="120"
-                />
-              </div>
-              <div style={styles.formGroup}>
-                <span style={styles.formLabel}>Phone Number</span>
-                <input
-                  type="text"
-                  placeholder="Phone number"
-                  value={formData.phone}
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  style={styles.inputField}
-                  className="signup-input"
-                  required
-                  disabled={loading}
-                />
-              </div>
-            </div>
-          )}
-
-          {formData.role === 'doctor' && (
             <div style={styles.formGroup}>
-              <span style={styles.formLabel}>Specialization</span>
+              <span style={styles.formLabel}>Phone Number *</span>
               <input
-                type="text"
-                placeholder="Enter your specialization (e.g., Cardiologist, Dentist)"
-                value={formData.specialization}
-                onChange={(e) => setFormData({...formData, specialization: e.target.value})}
-                style={styles.inputField}
+                type="tel"
+                placeholder="Phone number"
+                value={formData.phone}
+                onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                style={{...styles.inputField, textAlign: 'left'}}
                 className="signup-input"
                 required
                 disabled={loading}
@@ -520,19 +431,48 @@ function Signup({ onLogin }) {
           )}
 
           {formData.role === 'hospital' && (
-            <div style={styles.formGroup}>
-              <span style={styles.formLabel}>Hospital Name</span>
-              <input
-                type="text"
-                placeholder="Enter hospital name"
-                value={formData.hospitalName}
-                onChange={(e) => setFormData({...formData, hospitalName: e.target.value})}
-                style={styles.inputField}
-                className="signup-input"
-                required
-                disabled={loading}
-              />
-            </div>
+            <>
+              <div style={styles.formGroup}>
+                <span style={styles.formLabel}>Hospital Name *</span>
+                <input
+                  type="text"
+                  placeholder="Enter hospital name"
+                  value={formData.hospitalName}
+                  onChange={(e) => setFormData({...formData, hospitalName: e.target.value})}
+                  style={styles.inputField}
+                  className="signup-input"
+                  required
+                  disabled={loading}
+                />
+              </div>
+
+              <div style={styles.formGroup}>
+                <span style={styles.formLabel}>Hospital Address *</span>
+                <input
+                  type="text"
+                  placeholder="Enter full hospital address"
+                  value={formData.address}
+                  onChange={(e) => setFormData({...formData, address: e.target.value})}
+                  style={styles.inputField}
+                  className="signup-input"
+                  required
+                  disabled={loading}
+                />
+              </div>
+
+              <div style={styles.formGroup}>
+                <span style={styles.formLabel}>License Number (Optional)</span>
+                <input
+                  type="text"
+                  placeholder="Enter medical license number if applicable"
+                  value={formData.licenseNumber}
+                  onChange={(e) => setFormData({...formData, licenseNumber: e.target.value})}
+                  style={styles.inputField}
+                  className="signup-input"
+                  disabled={loading}
+                />
+              </div>
+            </>
           )}
 
           <button 
@@ -552,7 +492,7 @@ function Signup({ onLogin }) {
 
         <div style={styles.loginLink}>
           Already have an account? 
-          <Link to="/login" style={styles.loginText} className="login-link">
+          <Link to="/login" style={styles.loginText}>
             Login here
           </Link>
         </div>

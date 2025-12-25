@@ -5,8 +5,11 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
+  /* font-family: Arial, sans-serif;
+  background-color: #f5f5f5; */
+  background: #f4f8ff;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  color: #245598;
 }
 
 .app {

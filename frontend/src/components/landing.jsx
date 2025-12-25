@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Import images from assets folder
 import AnuImage from '../assets/Anu.jpeg';
-import AprajitaImage from '../assets/AprajitaDeep.jpeg';
-import JyotikaImage from '../assets/Jyotika.jpeg';
+import AprajitaImage from '../assets/AprajitaDeep.jpg';
+import JyotikaImage from '../assets/Jyotika.jpg';
 // Import video - make sure to place your video in the assets folder
 import HeroVideo from '../assets/hero-video.mp4'; // Add your video file
 
@@ -36,47 +36,90 @@ const styles = {
     boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
     transition: 'all 0.3s ease'
   },
+
+
+
   logo: {
-    fontSize: '1.5rem',
-    fontWeight: '600',
+    fontSize: '2rem',
+    fontWeight: '700',
     color: '#2563eb',
-    letterSpacing: '-0.025em'
+    letterSpacing: '-0.025em',
+     cursor: 'pointer',
+  transition: 'transform 0.3s ease',
+  boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+  borderRadius: '8px',
   },
+  logoHoverEffect: {
+  transform: 'scale(1.1)',           // slightly enlarges the logo
+  background: 'linear-gradient(45deg, #2563eb, #4b7be3)', // gradient effect
+  WebkitBackgroundClip: 'text',      // applies gradient to text
+  WebkitTextFillColor: 'transparent',
+  transition: 'all 0.4s ease',       // smooth animation
+  cursor: 'pointer'
+},
+
+logoAnimation: {
+  display: 'inline-block',
+  transition: 'all 0.4s ease',
+}
+,
+
   navLinks: {
     display: 'flex',
     gap: '1.5rem',
-    alignItems: 'center'
+    alignItems: 'center',
+    
   },
+  navLinkHoverBlue: {
+  color: '#2563eb', // blue color on hover
+  transition: 'color 0.3s ease'
+}
+,
   navLink: {
+    position: 'relative',
     color: '#475569',
     textDecoration: 'none',
     fontWeight: '500',
-    fontSize: '0.9rem',
-    transition: 'color 0.2s ease'
+    fontSize: '1rem',
+    transition: 'color 0.2s ease',
+      borderRadius: '6px',
+    
   },
-  navLinkHover: {
-    color: '#2563eb'
-  },
+  navLinkHoverBox: {
+  backgroundColor: '#2563eb', // blue box
+  color: '#ffffff',           // white text
+  padding: '0.4rem 0.8rem',   // adjust padding for box
+  borderRadius: '8px',        // rounded corners
+  transition: 'all 0.3s ease'
+}
+,
+navLinkHover: {
+  backgroundColor: '#2563eb',
+  color: '#ffffff',
+  boxShadow: '0 6px 16px rgba(37,99,235,0.35)'
+},
   getStartedButton: {
-    background: '#2563eb',
+    background: '#4b7be3',
     color: '#ffffff',
     border: 'none',
     padding: '0.6rem 1.5rem',
-    borderRadius: '6px',
+    borderRadius: '20px',
     fontSize: '0.9rem',
     fontWeight: '600',
     cursor: 'pointer',
-    transition: 'all 0.2s ease'
+    transition: 'all 0.2s ease',
+      boxShadow: '0 8px 20px rgba(37,99,235,0.3)'
   },
   getStartedButtonHover: {
-    backgroundColor: '#1d4ed8',
-    transform: 'translateY(-1px)'
+    backgroundColor: '#4b7be3',
+    transform: 'translateY(-1px)', 
+    boxShadow: '0px 2px 4px black'
   },
 
   // Hero Section
   heroSection: {
-    marginTop: '80px',
-    minHeight: '85vh',
+    marginTop: '50px',
+    minHeight: '100vh',
     display: 'flex',
     alignItems: 'center',
     padding: '6rem 2rem 4rem',
@@ -107,12 +150,15 @@ const styles = {
     animation: 'fadeInUp 0.8s ease-out'
   },
   heroTitle: {
-    fontSize: '2.8rem',
-    fontWeight: '700',
+    fontSize: '3rem',
+    fontWeight: 700,
     lineHeight: 1.2,
     marginBottom: '1.5rem',
-    color: '#0f172a'
-  },
+    fontFamily: "'Poppins', 'Nunito', 'Rubik', 'Inter', sans-serif",
+    background: 'linear-gradient(135deg, #2158d8ff 0%, #365b96ff 50%, #020617 100%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent'
+  },   
   heroSubtitle: {
     fontSize: '1.1rem',
     color: '#475569',
@@ -136,7 +182,7 @@ const styles = {
     transform: 'rotateY(0deg) rotateX(0deg) scale(1.02)'
   },
   heroVideo: {
-    width: '100%',
+    width: '700px',
     height: 'auto',
     display: 'block',
     borderRadius: '16px',
@@ -162,7 +208,7 @@ const styles = {
     width: '60px',
     height: '60px',
     borderRadius: '50%',
-    background: 'rgba(255, 255, 255, 0.9)',
+    background: 'rgba(255,255,255, 0.0)',
     border: 'none',
     display: 'flex',
     alignItems: 'center',
@@ -178,8 +224,8 @@ const styles = {
     boxShadow: '0 6px 30px rgba(37, 99, 235, 0.4)'
   },
   playIcon: {
-    fontSize: '24px',
-    color: '#2563eb',
+    fontSize: '0px',
+    color: 'white',
     marginLeft: '3px'
   },
 
@@ -190,11 +236,17 @@ const styles = {
   },
   sectionTitle: {
     textAlign: 'center',
-    fontSize: '2.2rem',
+    fontSize: '3rem',
     fontWeight: '700',
     marginBottom: '1rem',
-    color: '#0f172a'
+    color: '#4b7be3',
+     position: 'relative',
+  letterSpacing: '0.5px',
+  textTransform: 'capitalize',
+  textShadow: '0 4px 12px rgba(7, 53, 153, 0.25)'
+
   },
+ 
   sectionSubtitle: {
     textAlign: 'center',
     fontSize: '1.1rem',
@@ -218,30 +270,44 @@ const styles = {
     border: '1px solid #e2e8f0',
     transition: 'all 0.3s ease',
     textAlign: 'center',
-    boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+    boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+     cursor: 'pointer'
   },
   featureCardHover: {
+    backgroundColor: '#2563eb', 
     transform: 'translateY(-4px)',
     borderColor: '#cbd5e1',
-    boxShadow: '0 8px 24px rgba(0,0,0,0.08)'
+    // boxShadow: '0 8px 24px rgba(0,0,0,0.4)'
+     boxShadow: '0 25px 45px rgba(37,99,235,0.45)'
   },
   featureIcon: {
     fontSize: '2.5rem',
     marginBottom: '1.5rem',
-    color: '#2563eb'
+    color: '#2563eb',
+    transition: 'transform 0.4s ease'
   },
   featureTitle: {
     fontSize: '1.3rem',
     fontWeight: '600',
     marginBottom: '1rem',
-    color: '#0f172a'
+    color: '#0f172a',
+     transition: 'color 0.4s ease'
   },
   featureDescription: {
     color: '#64748b',
     lineHeight: 1.6,
-    fontSize: '1rem'
+    fontSize: '1rem',
+     transition: 'color 0.4s ease'
   },
-
+  featureIconHover: {
+    transform: 'scale(1.2)'
+  },
+featureTitleHover: {
+    color: '#ffffff'
+  },
+    featureDescriptionHover: {
+    color: '#e0e7ff'
+  },
   // Stats Section
   statsSection: {
     padding: '4rem 2rem',
@@ -290,13 +356,15 @@ const styles = {
     padding: '2rem',
     background: '#ffffff',
     borderRadius: '12px',
-    border: '1px solid #e2e8f0',
+    // border: '1px solid #e2e8f0',
     transition: 'all 0.3s ease',
-    boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+    boxShadow: '0 8px 24px rgba(0,0,0,0.3)'
   },
   stepCardHover: {
-    borderColor: '#cbd5e1',
-    transform: 'translateY(-2px)'
+    // borderColor: '#cbd5e1',
+    transform: 'translateY(-2px)',
+    backgroundColor: '#2563eb',        // Blue background
+  boxShadow: '0 20px 40px rgba(37,99,235,0.35)'
   },
   stepNumber: {
     fontSize: '2.5rem',
@@ -318,6 +386,18 @@ const styles = {
     color: '#475569',
     lineHeight: 1.6
   },
+  stepNumberHover: {
+  color: '#ffffff',
+  transition: 'color 0.3s ease'
+},
+stepTitleHover: {
+  color: '#ffffff',
+  transition: 'color 0.3s ease'
+},
+stepDescriptionHover: {
+  color: '#e0e7ff',
+  transition: 'color 0.3s ease'
+},
 
   // Testimonials Section
   testimonialsSection: {
@@ -372,6 +452,20 @@ const styles = {
     fontSize: '0.9rem',
     color: '#2563eb'
   },
+  testimonialCardHover: {
+  backgroundColor: '#2563eb',
+  transform: 'translateY(-6px)',
+  boxShadow: '0 20px 40px rgba(37,99,235,0.35)'
+},
+testimonialTextHover: {
+  color: '#ffffff'
+},
+authorNameHover: {
+  color: '#ffffff'
+},
+authorRoleHover: {
+  color: '#e0e7ff'
+},
 
   // About Us Section
   aboutSection: {
@@ -382,8 +476,8 @@ const styles = {
     textAlign: 'center',
     fontSize: '2.2rem',
     fontWeight: '700',
-    marginBottom: '1rem',
-    color: '#0f172a'
+    marginBottom: '3rem',
+    color: '#4b7be3'
   },
   aboutSubtitle: {
     textAlign: 'center',
@@ -405,9 +499,10 @@ const styles = {
     background: '#ffffff',
     borderRadius: '12px',
     overflow: 'hidden',
-    border: '1px solid #e2e8f0',
+    // border: '1px solid #e2e8f0',
     transition: 'all 0.3s ease',
-    boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+    boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+    position: 'relative'
   },
   teamCardHover: {
     transform: 'translateY(-4px)',
@@ -416,7 +511,8 @@ const styles = {
   },
   teamImageContainer: {
     height: '280px',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    position: 'relative'
   },
   teamImage: {
     width: '100%',
@@ -424,8 +520,12 @@ const styles = {
     objectFit: 'cover',
     transition: 'transform 0.6s ease'
   },
+  teamImageHover: {
+  transform: 'scale(1.08)'
+},
   teamContent: {
-    padding: '1.5rem'
+    padding: '1.5rem',
+    transition: 'all 0.3s ease'
   },
   teamName: {
     fontSize: '1.4rem',
@@ -450,7 +550,7 @@ const styles = {
     gap: '0.75rem'
   },
   socialButton: {
-    width: '36px',
+    width: '70%',
     height: '36px',
     borderRadius: '8px',
     display: 'flex',
@@ -466,7 +566,8 @@ const styles = {
   socialButtonHover: {
     background: '#2563eb',
     color: '#ffffff',
-    transform: 'translateY(-1px)'
+    transform: 'translateY(-1px)',
+    boxShadow: '0 10px 20px rgba(37,99,235,0.35)'
   },
 
   // CTA Section
@@ -494,6 +595,7 @@ const styles = {
     background: '#ffffff',
     color: '#2563eb',
     border: 'none',
+    marginTop: '15px',
     padding: '0.9rem 2.5rem',
     borderRadius: '6px',
     fontSize: '1rem',
@@ -558,11 +660,9 @@ const styles = {
   footerBottom: {
     maxWidth: '1200px',
     margin: '0 auto',
-    paddingTop: '2rem',
-    borderTop: '1px solid #334155',
     textAlign: 'center',
     color: '#94a3b8',
-    fontSize: '0.85rem'
+    fontSize: '1rem'
   }
 };
 
@@ -604,14 +704,27 @@ function LandingPage() {
   const [isPlaying, setIsPlaying] = useState(true);
   const [hoverStates, setHoverStates] = useState({
     videoWrapper: false,
+    
     playButton: false,
     featureCards: {},
     stepCards: {},
     teamCards: {},
     socialButtons: {},
     navLinks: {},
-    footerLinks: {}
+    footerLinks: {},
+    statsNumbers: {} ,
+     testimonials: {} 
   });
+
+  const handleCardHover = (cardType, index, isHovering) => {
+  setHoverStates(prev => ({
+    ...prev,
+    [cardType]: {
+      ...prev[cardType],
+      [index]: isHovering
+    }
+  }));
+};
   
   const videoRef = useRef(null);
 
@@ -653,15 +766,15 @@ function LandingPage() {
     }));
   };
 
-  const handleCardHover = (cardType, index, isHovering) => {
-    setHoverStates(prev => ({
-      ...prev,
-      [cardType]: {
-        ...prev[cardType],
-        [index]: isHovering
-      }
-    }));
-  };
+  // const handleCardHover = (cardType, index, isHovering) => {
+  //   setHoverStates(prev => ({
+  //     ...prev,
+  //     [cardType]: {
+  //       ...prev[cardType],
+  //       [index]: isHovering
+  //     }
+  //   }));
+  // };
 
   const teamMembers = [
     {
@@ -677,16 +790,16 @@ function LandingPage() {
       role: 'Full Stack Developer',
       bio: 'Software Engineering student focusing on MERN stack development. Responsible for integrating frontend with backend services and implementing real-time features.',
       image: AprajitaImage || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80',
-      github: 'https://github.com/AprajitaDeep',
-      linkedin: 'https://linkedin.com/in/aprajita-deep'
+      github: 'https://github.com/Aprajita-15',
+      linkedin: 'https://www.linkedin.com/in/aprajita123/'
     },
     {
       name: 'Jyotika',
       role: 'Frontend Designer & Developer',
       bio: 'UI/UX Design student passionate about creating intuitive healthcare interfaces. Designed the user experience and implemented responsive frontend components.',
       image: JyotikaImage || 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80',
-      github: 'https://github.com/jyotika-dev',
-      linkedin: 'https://linkedin.com/in/jyotika-design'
+      github: 'https://github.com/JYOTIKA04',
+      linkedin: 'https://www.linkedin.com/in/jyotika-sinha-03b979220/'
     }
   ];
 
@@ -710,29 +823,62 @@ function LandingPage() {
 
   return (
     <div style={styles.landingPage}>
-      {/* Navigation Bar */}
-      <nav style={{
-        ...styles.navbar,
-        backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.95)' : '#ffffff',
-        backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        boxShadow: scrolled ? '0 4px 20px rgba(0,0,0,0.1)' : '0 1px 3px rgba(0,0,0,0.05)'
-      }}>
-        <div style={styles.logo}>CareHub</div>
-        <div style={styles.navLinks}>
-          <a href="#features" style={styles.navLink}>Features</a>
-          <a href="#how-it-works" style={styles.navLink}>How It Works</a>
-          <a href="#testimonials" style={styles.navLink}>Testimonials</a>
-          <a href="#team" style={styles.navLink}>Team</a>
-          <button onClick={handleGetStarted} style={{
-            ...styles.getStartedButton,
-            ...(hoverStates.getStartedButton ? styles.getStartedButtonHover : {})
-          }}
-          onMouseEnter={() => handleHover('getStartedButton', true)}
-          onMouseLeave={() => handleHover('getStartedButton', false)}>
-            Get Started
-          </button>
-        </div>
-      </nav>
+     
+
+<nav
+  style={{
+    ...styles.navbar,
+    ...(hoverStates.navbar ? styles.navbarHover : {})
+  }}
+  onMouseEnter={() => handleHover('navbar', true)}
+  onMouseLeave={() => handleHover('navbar', false)}
+>
+ <div
+  style={{
+    ...styles.logo,
+    ...styles.logoAnimation,
+    ...(hoverStates.logo ? styles.logoHoverEffect : {})
+  }}
+  onMouseEnter={() => handleHover('logo', true)}
+  onMouseLeave={() => handleHover('logo', false)}
+>
+  CareHub
+</div>
+
+
+  {/* <-- REPLACE THIS ENTIRE BLOCK WITH THE NEW CODE */}
+  <div style={styles.navLinks}>
+  {['Features', 'How It Works', 'Testimonials', 'Team'].map((text, index) => (
+  <a
+    key={index}
+    href={`#${text.toLowerCase().replace(/ /g, '-')}`}
+    style={{
+      ...styles.navLink,
+      ...(hoverStates.navLinks?.[index] ? styles.navLinkHoverBox : {})
+    }}
+    onMouseEnter={() => handleCardHover('navLinks', index, true)}
+    onMouseLeave={() => handleCardHover('navLinks', index, false)}
+  >
+    {text}
+  </a>
+))}
+
+
+  <button
+    onClick={handleGetStarted}
+    style={{
+      ...styles.getStartedButton,
+      ...(hoverStates.getStartedButton ? styles.getStartedButtonHover : {})
+    }}
+    onMouseEnter={() => handleHover('getStartedButton', true)}
+    onMouseLeave={() => handleHover('getStartedButton', false)}
+  >
+    Get Started
+  </button>
+</div>
+
+</nav>
+
 
       {/* Hero Section */}
       <section style={styles.heroSection}>
@@ -743,7 +889,7 @@ function LandingPage() {
               Smart OPD Queue Management
             </h1>
             <p style={styles.heroSubtitle}>
-              A final year project focused on optimizing patient flow in hospital outpatient departments.
+              A project focused on optimizing patient flow in hospital outpatient departments.
               Using intelligent algorithms to reduce waiting times and improve patient experience through digital queue management.
             </p>
             <button onClick={handleGetStarted} style={{
@@ -800,6 +946,7 @@ function LandingPage() {
       {/* Features Section */}
       <section id="features" style={styles.featuresSection}>
         <h2 style={styles.sectionTitle}>Project Features</h2>
+        
         <p style={styles.sectionSubtitle}>
           Key functionalities implemented in our Smart OPD Queue Management System
         </p>
@@ -830,17 +977,44 @@ function LandingPage() {
               onMouseEnter={() => handleCardHover('featureCards', index, true)}
               onMouseLeave={() => handleCardHover('featureCards', index, false)}
             >
-              <div style={styles.featureIcon}>{feature.icon}</div>
+              {/* <div style={styles.featureIcon}>{feature.icon}</div>
               <h3 style={styles.featureTitle}>{feature.title}</h3>
-              <p style={styles.featureDescription}>{feature.description}</p>
+              <p style={styles.featureDescription}>{feature.description}</p> */}
+               <div
+    style={{
+      ...styles.featureIcon,
+      ...(hoverStates.featureCards?.[index] ? styles.featureIconHover : {})
+    }}
+  >
+    {feature.icon}
+  </div>
+
+  <h3
+    style={{
+      ...styles.featureTitle,
+      ...(hoverStates.featureCards?.[index] ? styles.featureTitleHover : {})
+    }}
+  >
+    {feature.title}
+  </h3>
+
+  <p
+    style={{
+      ...styles.featureDescription,
+      ...(hoverStates.featureCards?.[index] ? styles.featureDescriptionHover : {})
+    }}
+  >
+    {feature.description}
+  </p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Stats Section */}
-      <section style={styles.statsSection}>
+      {/* <section style={styles.statsSection}>
         <div style={styles.statsContainer}>
+          
           <div style={styles.statItem}>
             <span style={styles.statNumber}>70%</span>
             <span style={styles.statLabel}>Average Wait Time Reduction</span>
@@ -858,10 +1032,37 @@ function LandingPage() {
             <span style={styles.statLabel}>Concurrent Patients</span>
           </div>
         </div>
-      </section>
+      </section> */}
+<section style={styles.statsSection}>
+  <div style={styles.statsContainer}>
+    {['70%', '10+', '99%', '100+'].map((num, index) => (
+      <div
+        key={index}
+        style={{
+          ...styles.statItem,
+          backgroundColor: hoverStates.statsNumbers?.[index] ? '#e9edf1ff' : 'transparent',
+          borderRadius: '12px',
+          padding: '1.5rem 1rem',
+          transition: 'all 0.3s ease',
+          transform: hoverStates.statsNumbers?.[index] ? 'scale(1.1)' : 'scale(1)',
+          cursor: 'pointer'
+        }}
+        onMouseEnter={() => handleCardHover('statsNumbers', index, true)}
+        onMouseLeave={() => handleCardHover('statsNumbers', index, false)}
+      >
+        <span style={styles.statNumber}>{num}</span>
+        <span style={styles.statLabel}>
+          {['Average Wait Time Reduction', 'Department Support', 'System Uptime', 'Concurrent Patients'][index]}
+        </span>
+      </div>
+    ))}
+  </div>
+</section>
+
+
 
       {/* How It Works Section */}
-      <section id="how-it-works" style={styles.howItWorksSection}>
+      {/* <section id="how-it-works" style={styles.howItWorksSection}>
         <h2 style={styles.sectionTitle}>System Architecture</h2>
         <p style={styles.sectionSubtitle}>
           How our MERN stack application processes and manages OPD queues
@@ -901,10 +1102,81 @@ function LandingPage() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
+      <section id="how-it-works" style={styles.howItWorksSection}>
+  <h2 style={styles.sectionTitle}>System Architecture</h2>
+  <p style={styles.sectionSubtitle}>
+    How our MERN stack application processes and manages OPD queues
+  </p>
+
+  <div style={styles.stepsContainer}>
+    {[
+      {
+        number: '01',
+        title: 'Patient Registration',
+        description:
+          'Patients register at kiosk or through mobile app. System assigns unique token and calculates estimated wait time based on real-time queue data.'
+      },
+      {
+        number: '02',
+        title: 'Queue Processing',
+        description:
+          'Backend algorithm processes queue with priority rules. Doctors receive notifications when patients are ready, minimizing idle time.'
+      },
+      {
+        number: '03',
+        title: 'Real-time Updates',
+        description:
+          'WebSocket connections provide live updates to all devices. Patients receive SMS notifications 15 minutes before their turn.'
+      }
+    ].map((step, index) => (
+      <div
+        key={index}
+        style={{
+          ...styles.stepCard,
+          ...(hoverStates.stepCards?.[index] ? styles.stepCardHover : {})
+        }}
+        onMouseEnter={() => handleCardHover('stepCards', index, true)}
+        onMouseLeave={() => handleCardHover('stepCards', index, false)}
+      >
+        <div
+          style={{
+            ...styles.stepNumber,
+            ...(hoverStates.stepCards?.[index] ? styles.stepNumberHover : {})
+          }}
+        >
+          {step.number}
+        </div>
+
+        <div style={styles.stepContent}>
+          <h3
+            style={{
+              ...styles.stepTitle,
+              ...(hoverStates.stepCards?.[index] ? styles.stepTitleHover : {})
+            }}
+          >
+            {step.title}
+          </h3>
+
+          <p
+            style={{
+              ...styles.stepDescription,
+              ...(hoverStates.stepCards?.[index]
+                ? styles.stepDescriptionHover
+                : {})
+            }}
+          >
+            {step.description}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
 
       {/* Testimonials Section */}
-      <section id="testimonials" style={styles.testimonialsSection}>
+      {/* <section id="testimonials" style={styles.testimonialsSection}>
         <h2 style={styles.sectionTitle}>Patient Feedback</h2>
         <div style={styles.testimonialsGrid}>
           {testimonials.map((testimonial, index) => (
@@ -927,7 +1199,74 @@ function LandingPage() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
+      <section id="testimonials" style={styles.testimonialsSection}>
+  <h2 style={styles.sectionTitle}>Patient Feedback</h2>
+
+  <div style={styles.testimonialsGrid}>
+    {testimonials.map((testimonial, index) => (
+      <div
+        key={index}
+        style={{
+          ...styles.testimonialCard,
+          ...(hoverStates.testimonials?.[index]
+            ? styles.testimonialCardHover
+            : {})
+        }}
+        onMouseEnter={() => handleCardHover('testimonials', index, true)}
+        onMouseLeave={() => handleCardHover('testimonials', index, false)}
+      >
+        <p
+          style={{
+            ...styles.testimonialText,
+            ...(hoverStates.testimonials?.[index]
+              ? styles.testimonialTextHover
+              : {})
+          }}
+        >
+          "{testimonial.text}"
+        </p>
+
+        <div style={styles.testimonialAuthor}>
+          <img
+            src={testimonial.image}
+            alt={testimonial.name}
+            style={styles.authorImage}
+            onError={(e) => {
+              e.target.src =
+                'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde';
+            }}
+          />
+
+          <div style={styles.authorInfo}>
+            <div
+              style={{
+                ...styles.authorName,
+                ...(hoverStates.testimonials?.[index]
+                  ? styles.authorNameHover
+                  : {})
+              }}
+            >
+              {testimonial.name}
+            </div>
+
+            <div
+              style={{
+                ...styles.authorRole,
+                ...(hoverStates.testimonials?.[index]
+                  ? styles.authorRoleHover
+                  : {})
+              }}
+            >
+              Patient
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
 
       {/* Team Section */}
       <section id="team" style={styles.aboutSection}>
@@ -969,7 +1308,7 @@ function LandingPage() {
                     onMouseEnter={() => handleCardHover('socialButtons', `${index}-github`, true)}
                     onMouseLeave={() => handleCardHover('socialButtons', `${index}-github`, false)}
                   >
-                    GH
+                    GitHub
                   </a>
                   <a 
                     href={member.linkedin} 
@@ -982,7 +1321,7 @@ function LandingPage() {
                     onMouseEnter={() => handleCardHover('socialButtons', `${index}-linkedin`, true)}
                     onMouseLeave={() => handleCardHover('socialButtons', `${index}-linkedin`, false)}
                   >
-                    IN
+                    LinkedIn
                   </a>
                 </div>
               </div>
@@ -1010,53 +1349,6 @@ function LandingPage() {
 
       {/* Footer */}
       <footer id="contact" style={styles.footer}>
-        <div style={styles.footerContent}>
-          <div style={styles.footerColumn}>
-            <h3>CareHub Project</h3>
-            <p>
-              3rd Year Project - Smart OPD Queue Management System<br/>
-              Computer Science Department<br/>
-              Lovely Professional University
-            </p>
-            <p>Academic Project | Fall 2025</p>
-          </div>
-          <div style={styles.footerColumn}>
-            <h3>Project Components</h3>
-            <ul style={styles.footerLinks}>
-              {['Queue Management', 'Patient Dashboard', 'Admin Panel', 'Real-time Analytics', 'Simulation Module'].map((link, index) => (
-                <li key={index}>
-                  <a 
-                    href={`#${link.toLowerCase().replace(' ', '-')}`}
-                    style={{
-                      color: '#cbd5e1',
-                      textDecoration: 'none',
-                      fontSize: '0.9rem',
-                      transition: 'all 0.2s ease',
-                      display: 'inline-block'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.color = '#60a5fa';
-                      e.target.style.transform = 'translateX(3px)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.color = '#cbd5e1';
-                      e.target.style.transform = 'translateX(0)';
-                    }}
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div style={styles.footerColumn}>
-            <h3>Academic Contact</h3>
-            <p>Project Guide: Dr. Monica </p>
-            <p>Department of Computer Science</p>
-            <p>Email: carehub.project@lpu.edu.in</p>
-            <p>Project Duration: August - December 2025</p>
-          </div>
-        </div>
         <div style={styles.footerBottom}>
           <p>© {new Date().getFullYear()} CareHub</p>
           <p>Built with React, Node.js, Express, and MongoDB</p>

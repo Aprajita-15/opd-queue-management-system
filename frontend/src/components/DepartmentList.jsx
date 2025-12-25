@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+
 const styles = {
   container: {
     background: '#ffffff',
@@ -119,7 +120,7 @@ const styles = {
     background: '#f0f9ff',
     borderRadius: '8px',
     border: '1px solid #dbeafe',
-    width: '40px',
+    width: '60px',
     height: '40px',
     display: 'flex',
     alignItems: 'center',
@@ -173,6 +174,8 @@ const styles = {
     borderRadius: '10px',
     border: '1px solid #e2e8f0'
   },
+ 
+
   loadingSpinner: {
     display: 'inline-block',
     width: '40px',
@@ -215,6 +218,8 @@ const DEPT_ABBREVIATIONS = {
 function DepartmentList({ hospitalId, onSelect }) {
   const [departments, setDepartments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [hoveredDeptId, setHoveredDeptId] = useState(null);
+
 
   useEffect(() => {
     setLoading(true);
@@ -261,11 +266,26 @@ function DepartmentList({ hospitalId, onSelect }) {
         <div style={styles.list}>
           {departments.map(dept => {
             const status = getDeptStatus(dept);
+             const isHovered = hoveredDeptId === dept._id;
             return (
               <div 
                 key={dept._id} 
-                style={styles.listItem} 
-                onClick={() => onSelect && onSelect(dept)}
+                onMouseEnter={() => setHoveredDeptId(dept._id)}
+        onMouseLeave={() => setHoveredDeptId(null)}
+        onClick={() => onSelect && onSelect(dept)}
+
+                style={{...styles.listItem, 
+      backgroundColor: isHovered ? '#2563eb' : '#ffffff', // div background changes on hover
+    boxShadow: isHovered 
+      ? '0 12px 30px rgba(37, 99, 235, 0.25)'
+      : '0 4px 12px rgba(0, 0, 0, 0.05)',
+    transition: 'all 0.3s ease',
+    cursor: 'pointer'
+          
+                } }
+                
+                className="ui-hover-blue"
+              
               >
                 <div style={styles.iconContainer}>
                   <div style={styles.deptIcon}>
@@ -274,7 +294,10 @@ function DepartmentList({ hospitalId, onSelect }) {
                   <span style={styles.selectArrow}>→</span>
                 </div>
                 
-                <div style={styles.deptName}>
+                <div style={{...styles.deptName,
+                  color: isHovered ? '#ffffff' : '#0f172a',
+                   transition: 'color 0.3s ease'
+                }}>
                   {dept.name}
                   <span style={{ ...styles.statusIndicator, ...status.style }}>
                     {status.text}

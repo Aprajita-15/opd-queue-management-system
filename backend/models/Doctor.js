@@ -12,7 +12,14 @@ const DoctorSchema = new mongoose.Schema({
   },
   absentDates: [{ type: Date }],
   queue: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Queue' }],
-  currentDelay: { type: Number, default: 0 }
+  currentDelay: { type: Number, default: 0 },
+  
+  // NEW FIELD - Track who created this doctor (hospital owner)
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Doctor', DoctorSchema);

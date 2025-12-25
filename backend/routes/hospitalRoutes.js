@@ -1,26 +1,22 @@
+// routes/hospitalRoutes.js
 const express = require('express');
-const {  
-  listHospitals, 
-  getHospitalDetails, 
-  newHospital, 
-  deleteHospital
-} = require('../controllers/hospitalController');
-const { protect, authorize } = require('../middleware/authMiddleware');
 const router = express.Router();
+const { protect, authorize } = require('../middleware/authMiddleware');
+const hospitalController = require('../controllers/hospitalController');
 
-// Add hospital (new API)
-router.post('/add', newHospital);
+// List all hospitals (public or protected)
+router.get('/', hospitalController.listHospitals);
 
-// Old add hospital (if still needed)
-//router.post('/', protect, authorize('hospital'), addHospital);
+// Get hospital details
+router.get('/:id', hospitalController.getHospitalDetails);
 
-// List all hospitals
-router.get('/', listHospitals);
+// Create new hospital - MUST be protected
+router.post('/new', protect, hospitalController.newHospital);
 
-// Delete hospital
-router.delete('/:id', deleteHospital);
+// Alternative endpoint (for backward compatibility)
+router.post('/add', protect, hospitalController.addHospital);
 
-// Get hospital by ID (must come LAST)
-router.get('/:id', getHospitalDetails);
+// Delete hospital - MUST be protected
+router.delete('/:id', protect, hospitalController.deleteHospital);
 
 module.exports = router;

@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+
 const styles = {
   pageContainer: {
     background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)',
     padding: '2rem',
+    height: 'auto',        // ✅ let content decide height
+  minHeight: 'unset',
     borderRadius: '16px',
     fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-    minHeight: '100vh',
+    // minHeight: '100vh',
+    paddingBottom: '0',
     animation: '$fadeIn 0.6s ease-out'
   },
 
@@ -21,7 +25,8 @@ const styles = {
     border: '1px solid #e2e8f0',
     boxShadow: '0 10px 40px rgba(0, 0, 0, 0.08)',
     position: 'relative',
-    overflow: 'hidden'
+    overflow: 'hidden',
+     transition: 'all 0.4s ease'
   },
   
   doctorProfile: {
@@ -42,7 +47,8 @@ const styles = {
     position: 'relative',
     animation: '$float 6s ease-in-out infinite, $fadeInUp 0.8s ease-out 0.2s both',
     boxShadow: '0 8px 32px rgba(37, 99, 235, 0.25)',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    transition: 'transform 0.4s ease'
   },
   
   doctorImage: {
@@ -63,7 +69,10 @@ const styles = {
     fontWeight: '700',
     marginBottom: '0.5rem',
     color: '#0f172a',
-    position: 'relative'
+    position: 'relative',
+    background: 'linear-gradient(90deg, #2563eb, #1d4ed8)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
   },
   
   specialization: {
@@ -110,7 +119,8 @@ const styles = {
     '&:hover': {
       transform: 'translateY(-5px)',
       boxShadow: '0 15px 35px rgba(0, 0, 0, 0.1)',
-      borderColor: '#cbd5e1'
+      borderColor: '#cbd5e1',
+
     },
     '&::before': {
       content: '""',
@@ -144,13 +154,17 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
     gap: '3rem',
-    marginTop: '2rem'
+    marginTop: '2rem',
+    marginBottom: '-0.5rem'
+
   },
   
   queueSection: {
     background: '#ffffff',
-    padding: '2rem',
+    padding: '2.5rem',
     borderRadius: '16px',
+     paddingBottom: '0.5rem',
+     marginBottom: '-0.5rem',
     border: '1px solid #e2e8f0',
     boxShadow: '0 10px 40px rgba(0, 0, 0, 0.08)',
     animation: '$slideInLeft 0.8s ease-out'
@@ -182,9 +196,13 @@ const styles = {
   },
   
   queueList: {
-    maxHeight: '400px',
+    maxHeight: '500px',
+    
     overflowY: 'auto',
-    paddingRight: '1rem'
+    paddingRight: '1rem',
+    paddingBottom: '0',
+    marginBottom: '0',
+   
   },
   
   queueItem: {
@@ -508,6 +526,8 @@ const styles = {
 
 function DoctorQueue({ doctor, token }) {
   const [queue, setQueue] = useState([]);
+  const [hoveredCard, setHoveredCard] = React.useState(null);
+
   const [patientData, setPatientData] = useState({ 
     name: '', 
     age: '', 
@@ -593,11 +613,31 @@ function DoctorQueue({ doctor, token }) {
     return position * timePerPatient;
   };
 
+  const handleHoverIn = (e) => {
+  e.currentTarget.style.backgroundColor = '#2563eb';
+  e.currentTarget.style.boxShadow = '0 14px 30px rgba(37, 99, 235, 0.35)';
+  e.currentTarget.style.transform = 'translateY(-6px)';
+  e.currentTarget.querySelector('.label').style.color = '#ffffff';
+  e.currentTarget.querySelector('.number').style.color = '#ffffff';
+};
+
+const handleHoverOut = (e) => {
+  e.currentTarget.style.backgroundColor = '#ffffff';
+  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)';
+  e.currentTarget.style.transform = 'translateY(0)';
+  e.currentTarget.querySelector('.label').style.color = '#64748b';
+  e.currentTarget.querySelector('.number').style.color = '#0f172a';
+};
+
+
   return (
     <div style={styles.pageContainer}>
       <div style={styles.doctorHeader}>
         <div style={styles.doctorProfile}>
-          <div style={styles.doctorImageContainer}>
+          <div style={styles.doctorImageContainer}
+          onMouseEnter={e => e.currentTarget.querySelector('img').style.transform = 'scale(1.08)'}
+  onMouseLeave={e => e.currentTarget.querySelector('img').style.transform = 'scale(1)'}
+          >
             <img 
               src={getDoctorImage()} 
               alt={`Dr. ${doctor?.name}`}
@@ -628,30 +668,41 @@ function DoctorQueue({ doctor, token }) {
         </div>
         
         <div style={styles.statsGrid}>
-          <div style={styles.statCard}>
-            <div style={styles.statNumber}>
+
+          <div style={styles.statCard}
+         onMouseEnter={handleHoverIn}
+    onMouseLeave={handleHoverOut}
+          >
+            <div className="number" style={styles.statNumber}>
               {queue.length}
             </div>
-            <div style={styles.statLabel}>Patients in Queue</div>
+            <div className="label" style={styles.statLabel} >Patients in Queue</div>
           </div>
-          <div style={styles.statCard}>
-            <div style={styles.statNumber}>
+          
+          <div style={styles.statCard}
+          onMouseEnter={handleHoverIn}
+    onMouseLeave={handleHoverOut}>
+            <div  className="number" style={styles.statNumber}>
               {queue.length * 15}
               <span style={{ fontSize: '1rem', color: '#64748b' }}>min</span>
             </div>
-            <div style={styles.statLabel}>Estimated Wait Time</div>
+            <div className="label" style={styles.statLabel}>Estimated Wait Time</div>
           </div>
-          <div style={styles.statCard}>
-            <div style={styles.statNumber}>
+          <div style={styles.statCard}
+          onMouseEnter={handleHoverIn}
+    onMouseLeave={handleHoverOut}>
+            <div className="number" style={styles.statNumber}>
               {doctor?.consultationFee || '$50'}
             </div>
-            <div style={styles.statLabel}>Consultation Fee</div>
+            <div className="label" style={styles.statLabel}>Consultation Fee</div>
           </div>
-          <div style={styles.statCard}>
-            <div style={styles.statNumber}>
+          <div style={styles.statCard}
+        onMouseEnter={handleHoverIn}
+    onMouseLeave={handleHoverOut}>
+            <div className="number" style={styles.statNumber}>
               {doctor?.workingHours?.start || '9:00'} - {doctor?.workingHours?.end || '17:00'}
             </div>
-            <div style={styles.statLabel}>Working Hours</div>
+            <div className="label" style={styles.statLabel}>Working Hours</div>
           </div>
         </div>
       </div>
@@ -674,7 +725,17 @@ function DoctorQueue({ doctor, token }) {
           ) : (
             <div style={styles.queueList}>
               {queue.map((item, idx) => (
-                <div key={item._id} style={styles.queueItem}>
+                <div key={item._id} style={{...styles.queueItem,
+                  marginBottom: idx === queue.length - 1 ? '0' : '1rem'
+                }}
+                onMouseEnter={e => {
+    e.currentTarget.style.transform = 'translateX(6px)';
+    e.currentTarget.style.boxShadow = '0 12px 30px rgba(0,0,0,0.12)';
+  }}
+  onMouseLeave={e => {
+    e.currentTarget.style.transform = 'translateX(0)';
+    e.currentTarget.style.boxShadow = styles.queueItem.boxShadow;
+  }}>
                   <div style={styles.queuePosition}>#{idx + 1}</div>
                   
                   <div style={styles.patientInfo}>
@@ -785,7 +846,9 @@ function DoctorQueue({ doctor, token }) {
               />
             </div>
 
-            <button type="submit" style={styles.joinButton}>
+            <button type="submit" style={styles.joinButton}
+            onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-3px)'}
+  onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}>
               Join Today's Queue
             </button>
           </form>

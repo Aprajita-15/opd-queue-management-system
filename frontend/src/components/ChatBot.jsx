@@ -11,8 +11,8 @@ const ChatBot = () => {
 
   // 1. Initialize Gemini API
   // Replace 'YOUR_GEMINI_API_KEY' with your actual key from Google AI Studio
-  const genAI = new GoogleGenerativeAI("AIzaSyAyGcWu5I-fZhZeQIV-jTmhRKKMPe0p-jA");
-  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flask" });
+  const genAI = new GoogleGenerativeAI("AIzaSyA7IQKjtWyde7x9xYTzcLoBbeLXeY-30wI");
+  const model = genAI.getGenerativeModel({ model: "models/gemini-2.5-flash" });
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -42,20 +42,23 @@ const ChatBot = () => {
   // 2. Updated API Call Logic
   const callGeminiAPI = async (userMessage) => {
     try {
-      const prompt = `You are a Hospital Queue Management Assistant. 
-      Help users with hospital information, doctor availability, appointment booking, queue status, and emergency services. 
-      Keep responses concise and helpful. Use bullet points for lists.
-
-      User query: ${userMessage}`;
-
+      const prompt = `
+      You are a Hospital Queue Management Assistant. You  provide information related to hospital services, doctors, patients, and appointments.
+      
+      User query: ${userMessage}
+      `;
+      
       const result = await model.generateContent(prompt);
       const response = await result.response;
       return response.text();
     } catch (error) {
       console.error('Gemini API Error:', error);
-      return "I'm having trouble connecting to the hospital system. Please try again or call emergency services if this is urgent.";
+  
+      // Return error message to display in chat
+      return `Error from Gemini API: ${error.message || error}`;
     }
   };
+  
 
   const handleSendMessage = async (e) => {
     e?.preventDefault();

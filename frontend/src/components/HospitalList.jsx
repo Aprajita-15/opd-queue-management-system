@@ -1,556 +1,1293 @@
+// // import React, { useState, useEffect } from 'react';
+// // import axios from 'axios';
+// //  import ChatBot from './ChatBot';
+// // import { useNavigate } from 'react-router-dom';
+// // import {
+// //   Search,
+// //   Hospital,
+// //   TrendingUp,
+// //   AlertCircle,
+// //   Star,
+// //   MapPin,
+// //   Phone,
+// //   Clock,
+// //   Bed
+// // } from 'lucide-react';
+
+// // const styles = {
+// //   pageContainer: {
+// //     minHeight: '100vh',
+// //     background: 'linear-gradient(135deg, #f8fafc 0%, #eef2ff 60%, #f1f5f9 100%)',
+// //     fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+// //     color: '#1e293b',
+// //     position: 'relative',
+// //     display: 'flex',
+// //     flexDirection: 'column'
+// //   },
+// //   backgroundElements: {
+// //     position: 'fixed',
+// //     inset: 0,
+// //     zIndex: 0,
+// //     pointerEvents: 'none'
+// //   },
+// //   contentWrapper: {
+// //     flex: '1 0 auto',
+// //     width: '100%',
+// //     maxWidth: '1440px',
+// //     margin: '0 auto',
+// //     padding: '2rem 2rem 6rem',
+// //     position: 'relative',
+// //     zIndex: 1
+// //   },
+// //   heroSection: {
+// //     padding: '3rem 0 4rem',
+// //     textAlign: 'center'
+// //   },
+// //   title: {
+// //     fontSize: '3.5rem',
+// //     fontWeight: '800',
+// //     background: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%)',
+// //     WebkitBackgroundClip: 'text',
+// //     WebkitTextFillColor: 'transparent',
+// //     margin: '0 0 1.5rem 0',
+// //     letterSpacing: '-0.03em',
+// //     lineHeight: '1.2'
+// //   },
+// //   subtitle: {
+// //     fontSize: '1.35rem',
+// //     color: '#64748b',
+// //     maxWidth: '860px',
+// //     margin: '0 auto 3rem',
+// //     lineHeight: '1.7',
+// //     fontWeight: '500'
+// //   },
+// //   searchSection: {
+// //     maxWidth: '860px',
+// //     margin: '0 auto 4rem'
+// //   },
+// //   searchContainer: {
+// //     position: 'relative',
+// //     width: '100%'
+// //   },
+// //   searchInput: {
+// //     width: '100%',
+// //     padding: '1.4rem 4rem 1.4rem 2rem',
+// //     background: '#ffffff',
+// //     border: 'none',
+// //     borderRadius: '20px',
+// //     fontSize: '1.15rem',
+// //     color: '#1e293b',
+// //     outline: 'none',
+// //     boxShadow: '0 12px 40px rgba(0, 0, 0, 0.1)',
+// //     transition: 'all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1)'
+// //   },
+// //   searchIcon: {
+// //     position: 'absolute',
+// //     right: '1.8rem',
+// //     top: '50%',
+// //     transform: 'translateY(-50%)',
+// //     color: '#64748b',
+// //     transition: 'all 0.4s ease'
+// //   },
+// //   statsSection: {
+// //     display: 'grid',
+// //     gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+// //     gap: '1.8rem',
+// //     marginBottom: '4rem',
+// //     padding: '2.5rem',
+// //     background: 'rgba(255, 255, 255, 0.95)',
+// //     backdropFilter: 'blur(12px)',
+// //     borderRadius: '24px',
+// //     border: '1px solid rgba(226, 232, 240, 0.7)',
+// //     boxShadow: '0 20px 50px rgba(0, 0, 0, 0.1)'
+// //   },
+// //   statItem: {
+// //     display: 'flex',
+// //     alignItems: 'center',
+// //     gap: '1.2rem',
+// //     padding: '1.8rem',
+// //     borderRadius: '18px',
+// //     background: 'rgba(255, 255, 255, 0.6)',
+// //     border: '1px solid rgba(226, 232, 240, 0.5)',
+// //     transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+// //     cursor: 'default'
+// //   },
+// //   statIconContainer: {
+// //     width: '60px',
+// //     height: '60px',
+// //     borderRadius: '16px',
+// //     display: 'flex',
+// //     alignItems: 'center',
+// //     justifyContent: 'center',
+// //     background: 'linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%)',
+// //     color: '#1e40af',
+// //     transition: 'all 0.5s ease'
+// //   },
+// //   statNumber: {
+// //     fontSize: '2.5rem',
+// //     fontWeight: '800',
+// //     background: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)',
+// //     WebkitBackgroundClip: 'text',
+// //     WebkitTextFillColor: 'transparent',
+// //     lineHeight: '1'
+// //   },
+// //   statLabel: {
+// //     fontSize: '1rem',
+// //     color: '#64748b',
+// //     fontWeight: '600',
+// //     textTransform: 'uppercase',
+// //     letterSpacing: '0.6px'
+// //   },
+// //   resultsCount: {
+// //     fontSize: '1.1rem',
+// //     color: '#475569',
+// //     marginBottom: '2rem',
+// //     fontWeight: '600',
+// //     padding: '1rem 1.5rem',
+// //     background: '#f1f5f9',
+// //     borderRadius: '16px',
+// //     display: 'inline-block',
+// //     border: '1px solid #e2e8f0'
+// //   },
+// //   hospitalsGrid: {
+// //     display: 'grid',
+// //     gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+// //     gap: '1.8rem',
+// //     marginBottom: '4rem'
+// //   },
+// //   hospitalCard: {
+// //     background: '#ffffff',
+// //     borderRadius: '18px',
+// //     overflow: 'hidden',
+// //     border: '1px solid #e2e8f0',
+// //     boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
+// //     transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
+// //     cursor: 'pointer',
+// //     display: 'flex',
+// //     flexDirection: 'column'
+// //   },
+// //   cardImageContainer: {
+// //     height: '180px',
+// //     overflow: 'hidden',
+// //     position: 'relative'
+// //   },
+// //   cardImage: {
+// //     width: '100%',
+// //     height: '100%',
+// //     objectFit: 'cover',
+// //     transition: 'transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1)'
+// //   },
+// //   statusBadgeImage: {
+// //     position: 'absolute',
+// //     top: '0.7rem',
+// //     right: '0.7rem',
+// //     padding: '0.3rem 0.8rem',
+// //     borderRadius: '20px',
+// //     fontSize: '0.72rem',
+// //     fontWeight: '700',
+// //     textTransform: 'uppercase',
+// //     letterSpacing: '0.5px',
+// //     background: 'rgba(255, 255, 255, 0.96)',
+// //     backdropFilter: 'blur(12px)',
+// //     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+// //     transition: 'all 0.4s ease'
+// //   },
+// //   cardContent: {
+// //     padding: '0.9rem',
+// //     flexGrow: 1,
+// //     display: 'flex',
+// //     flexDirection: 'column',
+// //     justifyContent: 'space-between'
+// //   },
+// //   hospitalName: {
+// //     fontSize: '1.2rem',
+// //     fontWeight: '700',
+// //     marginBottom: '0.3rem',
+// //     color: '#0f172a',
+// //     transition: 'color 0.4s ease'
+// //   },
+// //   hospitalLocation: {
+// //     display: 'flex',
+// //     alignItems: 'center',
+// //     gap: '0.4rem',
+// //     color: '#64748b',
+// //     fontSize: '0.9rem',
+// //     marginBottom: '0.6rem'
+// //   },
+// //   detailsGrid: {
+// //     display: 'grid',
+// //     gridTemplateColumns: '1fr',
+// //     gap: '0.5rem',
+// //     marginBottom: '0.5rem'
+// //   },
+// //   detailItem: {
+// //     display: 'flex',
+// //     alignItems: 'center',
+// //     justifyContent: 'space-between',
+// //     gap: '0.8rem',
+// //     padding: '0.5rem',
+// //     background: '#f8fafc',
+// //     borderRadius: '12px',
+// //     border: '1px solid #e2e8f0',
+// //     transition: 'all 0.4s ease'
+// //   },
+// //   detailLeft: {
+// //     display: 'flex',
+// //     alignItems: 'center',
+// //     gap: '0.5rem',
+// //     flex: 1
+// //   },
+// //   detailIcon: {
+// //     color: '#3b82f6',
+// //     flexShrink: 0
+// //   },
+// //   detailLabel: {
+// //     fontSize: '0.7rem',
+// //     color: '#94a3b8',
+// //     fontWeight: '600',
+// //     textTransform: 'uppercase',
+// //     letterSpacing: '0.5px'
+// //   },
+// //   detailValue: {
+// //     fontSize: '0.85rem',
+// //     fontWeight: '600',
+// //     color: '#334155'
+// //   },
+// //   ratingContainer: {
+// //     display: 'flex',
+// //     alignItems: 'center',
+// //     justifyContent: 'space-between',
+// //     padding: '0.6rem 0.9rem',
+// //     background: 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)',
+// //     borderRadius: '12px',
+// //     border: '1px solid #fde68a',
+// //     marginBottom: '0.5rem',
+// //     transition: 'all 0.5s ease'
+// //   },
+// //   ratingValue: {
+// //     fontSize: '1.1rem',
+// //     fontWeight: '800',
+// //     color: '#92400e',
+// //     marginLeft: '0.4rem'
+// //   },
+// //   ratingCount: {
+// //     fontSize: '0.8rem',
+// //     color: '#92400e',
+// //     fontWeight: '600'
+// //   },
+// //   giveFeedbackButton: {
+// //     width: '100%',
+// //     padding: '0.75rem',
+// //     background: 'linear-gradient(135deg, #3b82f6 0%, #1e40af 100%)',
+// //     color: 'white',
+// //     border: 'none',
+// //     borderRadius: '12px',
+// //     fontSize: '0.9rem',
+// //     fontWeight: '700',
+// //     cursor: 'pointer',
+// //     display: 'flex',
+// //     alignItems: 'center',
+// //     justifyContent: 'center',
+// //     gap: '0.4rem',
+// //     transition: 'all 0.5s ease',
+// //     position: 'relative',
+// //     overflow: 'hidden'
+// //   }
+// // };
+
+// // // Inject hover styles and animations
+// // const styleSheet = document.createElement('style');
+// // styleSheet.textContent = `
+// //   @keyframes floatBg {
+// //     0%, 100% { transform: translateY(0) rotate(0deg); }
+// //     50% { transform: translateY(-20px) rotate(2deg); }
+// //   }
+// //   .bg-blob {
+// //     position: absolute;
+// //     border-radius: 50%;
+// //     background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(99, 102, 241, 0.04));
+// //     animation: floatBg 25s infinite ease-in-out;
+// //   }
+// //   .bg-blob:nth-child(1) {
+// //     width: 700px;
+// //     height: 700px;
+// //     top: -350px;
+// //     right: -250px;
+// //     animation-delay: 0s;
+// //   }
+// //   .bg-blob:nth-child(2) {
+// //     width: 600px;
+// //     height: 600px;
+// //     bottom: -300px;
+// //     left: -200px;
+// //     animation-delay: 12s;
+// //   }
+// //   .search-input:hover {
+// //     transform: translateY(-6px);
+// //     box-shadow: 0 20px 60px rgba(59, 130, 246, 0.25);
+// //     border: 2px solid #93c5fd;
+// //   }
+// //   .search-input:focus {
+// //     transform: translateY(-8px);
+// //     box-shadow: 0 25px 70px rgba(59, 130, 246, 0.3), 0 0 0 5px rgba(59, 130, 246, 0.15);
+// //     border: 2px solid #3b82f6;
+// //   }
+// //   .search-input:focus ~ .search-icon {
+// //     color: #3b82f6;
+// //     transform: translateY(-50%) scale(1.3);
+// //   }
+// //   .stat-item:hover {
+// //     transform: translateY(-10px) scale(1.03);
+// //     box-shadow: 0 30px 60px rgba(59, 130, 246, 0.2);
+// //     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+// //   }
+// //   .stat-item:hover .stat-icon-container {
+// //     transform: scale(1.15) rotate(8deg);
+// //   }
+// //   .hospital-card:hover {
+// //     transform: translateY(-12px) scale(1.03);
+// //     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.2);
+// //   }
+// //   .hospital-card:hover .card-image {
+// //     transform: scale(1.15);
+// //   }
+// //   .hospital-card:hover .hospital-name {
+// //     color: #2563eb;
+// //   }
+// //   .hospital-card:hover .detail-item {
+// //     transform: translateY(-3px);
+// //     background: #ffffff;
+// //     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+// //   }
+// //   .hospital-card:hover .status-badge-image {
+// //     transform: scale(1.1);
+// //   }
+// //   .rating-container:hover {
+// //     transform: translateY(-5px);
+// //   }
+// //   .give-feedback-btn:hover {
+// //     transform: translateY(-5px) scale(1.04);
+// //     box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4);
+// //   }
+// // `;
+// // document.head.appendChild(styleSheet);
+
+// // function HospitalList({ onSelect, token, user }) {
+// //   const [hospitals, setHospitals] = useState([]);
+// //   const [searchQuery, setSearchQuery] = useState('');
+// //   const [loading, setLoading] = useState(true);
+// //   const navigate = useNavigate();
+
+// //   useEffect(() => {
+// //     const fetchHospitalsWithRatings = async () => {
+// //       try {
+// //         setLoading(true);
+// //         const res = await axios.get('http://localhost:5000/api/hospitals');
+
+// //         const hospitalsWithRatings = await Promise.all(
+// //           res.data.map(async (hospital) => {
+// //             try {
+// //               const ratingsRes = await axios.get(
+// //                 `http://localhost:5000/api/feedback/hospital/${hospital._id}`
+// //               );
+// //               return {
+// //                 ...hospital,
+// //                 averageRating: ratingsRes.data.averageRating || 0,
+// //                 ratingCount: ratingsRes.data.ratingCount || 0,
+// //               };
+// //             } catch (error) {
+// //               return { ...hospital, averageRating: 0, ratingCount: 0 };
+// //             }
+// //           })
+// //         );
+
+// //         setHospitals(hospitalsWithRatings);
+// //       } catch (err) {
+// //         console.error('Error fetching hospitals:', err);
+// //       } finally {
+// //         setLoading(false);
+// //       }
+// //     };
+// //     fetchHospitalsWithRatings();
+// //   }, []);
+
+// //   const filteredHospitals = hospitals.filter(hospital => {
+// //     if (!searchQuery) return true;
+// //     const query = searchQuery.toLowerCase();
+// //     return (
+// //       hospital.name?.toLowerCase().includes(query) ||
+// //       hospital.address?.city?.toLowerCase().includes(query) ||
+// //       hospital.address?.state?.toLowerCase().includes(query) ||
+// //       hospital.address?.pincode?.toString().includes(query)
+// //     );
+// //   });
+
+// //   const totalHospitals = hospitals.length;
+// //   const totalBeds = hospitals.reduce((sum, h) => sum + (h.bedAvailability || 0), 0);
+// //   const averageBeds = totalHospitals > 0 ? Math.round(totalBeds / totalHospitals) : 0;
+// //   const lowAvailabilityHospitals = hospitals.filter(h => (h.bedAvailability || 0) > 0 && (h.bedAvailability || 0) <= 10).length;
+
+// //   const getBedStatusText = (count) => count === 0 ? 'No Beds' : count <= 10 ? 'Limited' : 'Available';
+
+// //   const getHospitalImage = (hospital) => {
+// //     if (hospital.image) return hospital.image;
+// //     const defaults = [
+// //       'https://images.unsplash.com/photo-1586773860418-dc22f8b874bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80',
+// //       'https://images.unsplash.com/photo-1516549655669-df565bc5d1d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80',
+// //       'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80',
+// //       'https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80'
+// //     ];
+// //     const index = hospital._id ? hospital._id.split('').reduce((a, c) => a + c.charCodeAt(0), 0) % defaults.length : 0;
+// //     return defaults[index];
+// //   };
+
+// //   const renderStars = (rating) => {
+// //     const stars = [];
+// //     const full = Math.floor(rating);
+// //     const hasHalf = rating - full >= 0.5;
+// //     for (let i = 0; i < 5; i++) {
+// //       if (i < full) stars.push(<Star key={i} size={16} fill="#f59e0b" stroke="#f59e0b" />);
+// //       else if (i === full && hasHalf) stars.push(<Star key={i} size={16} fill="#d1d5db" stroke="#f59e0b" />);
+// //       else stars.push(<Star key={i} size={16} fill="none" stroke="#d1d5db" />);
+// //     }
+// //     return stars;
+// //   };
+
+// //   const handleGiveFeedback = (hospitalId, e) => {
+// //     e.stopPropagation();
+// //     const hospital = hospitals.find(h => h._id === hospitalId);
+// //     navigate(`/feedback/${hospitalId}`, { state: { hospitalName: hospital?.name || 'Hospital' } });
+// //   };
+
+// //   return (
+// //     <div style={styles.pageContainer}>
+// //       <div style={styles.backgroundElements}>
+// //         <div className="bg-blob" />
+// //         <div className="bg-blob" />
+// //       </div>
+// // <ChatBot />
+// //       <div style={styles.contentWrapper}>
+// //         <div style={styles.heroSection}>
+// //           <h1 style={styles.title}>Hospital Queue Management</h1>
+// //           <p style={styles.subtitle}>
+// //             Find trusted hospitals with real-time bed availability, verified patient ratings, and detailed insights for better healthcare choices.
+// //           </p>
+// //           <div style={styles.searchSection}>
+// //             <div style={styles.searchContainer}>
+// //               <input
+// //                 type="text"
+// //                 placeholder="Search by hospital name, city, state, or pincode..."
+// //                 value={searchQuery}
+// //                 onChange={(e) => setSearchQuery(e.target.value)}
+// //                 className="search-input"
+// //                 style={styles.searchInput}
+// //               />
+// //               <div className="search-icon" style={styles.searchIcon}>
+// //                 <Search size={28} />
+// //               </div>
+// //             </div>
+// //           </div>
+// //         </div>
+
+// //         <div style={styles.statsSection}>
+// //           <div style={styles.statItem}>
+// //             <div style={styles.statIconContainer}><Hospital size={28} /></div>
+// //             <div><div style={styles.statNumber}>{totalHospitals}</div><div style={styles.statLabel}>Total Hospitals</div></div>
+// //           </div>
+// //           <div style={styles.statItem}>
+// //             <div style={styles.statIconContainer}><Bed size={28} /></div>
+// //             <div><div style={styles.statNumber}>{totalBeds}</div><div style={styles.statLabel}>Available Beds</div></div>
+// //           </div>
+// //           <div style={styles.statItem}>
+// //             <div style={styles.statIconContainer}><TrendingUp size={28} /></div>
+// //             <div><div style={styles.statNumber}>{averageBeds}</div><div style={styles.statLabel}>Average Beds</div></div>
+// //           </div>
+// //           <div style={styles.statItem}>
+// //             <div style={styles.statIconContainer}><AlertCircle size={28} /></div>
+// //             <div><div style={styles.statNumber}>{lowAvailabilityHospitals}</div><div style={styles.statLabel}>Low Availability</div></div>
+// //           </div>
+// //         </div>
+
+// //         {!loading && filteredHospitals.length > 0 && (
+// //           <div style={styles.resultsCount}>
+// //             Showing {filteredHospitals.length} of {hospitals.length} hospitals{searchQuery && ` for "${searchQuery}"`}
+// //           </div>
+// //         )}
+
+// //         {loading ? (
+// //           <div style={{ textAlign: 'center', padding: '8rem 2rem' }}>
+// //             <div style={{ width: '80px', height: '80px', border: '6px solid rgba(226,232,240,0.3)', borderTopColor: '#3b82f6', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 2rem' }}></div>
+// //             <h3 style={{ margin: '0 0 1rem', fontSize: '1.8rem', color: '#0f172a' }}>Loading Hospitals...</h3>
+// //           </div>
+// //         ) : filteredHospitals.length === 0 ? (
+// //           <div style={{ textAlign: 'center', padding: '6rem 2rem', background: '#fff', borderRadius: '24px', border: '2px dashed #e2e8f0' }}>
+// //             <h2 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#334155' }}>
+// //               {searchQuery ? 'No Hospitals Found' : 'No Hospitals Available'}
+// //             </h2>
+// //             <p style={{ color: '#64748b', fontSize: '1.2rem' }}>
+// //               {searchQuery ? 'Try a different search term.' : 'The system currently has no registered hospitals.'}
+// //             </p>
+// //           </div>
+// //         ) : (
+// //           <div style={styles.hospitalsGrid}>
+// //             {filteredHospitals.map((hospital) => (
+// //               <div
+// //                 key={hospital._id}
+// //                 style={styles.hospitalCard}
+// //                 className="hospital-card"
+// //                 onClick={() => onSelect && onSelect(hospital)}
+// //               >
+// //                 <div style={styles.cardImageContainer}>
+// //                   <img
+// //                     src={getHospitalImage(hospital)}
+// //                     alt={hospital.name}
+// //                     style={styles.cardImage}
+// //                     onError={(e) => e.target.src = 'https://images.unsplash.com/photo-1516549655669-df565bc5d1d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80'}
+// //                   />
+// //                   <div className="status-badge-image" style={styles.statusBadgeImage}>
+// //                     {hospital.status || 'Active'}
+// //                   </div>
+// //                 </div>
+// //                 <div style={styles.cardContent}>
+// //                   <div>
+// //                     <h3 style={styles.hospitalName} className="hospital-name">{hospital.name}</h3>
+// //                     <div style={styles.hospitalLocation}>
+// //                       <MapPin size={15} />
+// //                       <span>{hospital.address?.city || 'City'}, {hospital.address?.state || 'State'}</span>
+// //                     </div>
+// //                     <div style={styles.detailsGrid}>
+// //                       <div style={styles.detailItem}>
+// //                         <div style={styles.detailLeft}>
+// //                           <Bed size={15} style={styles.detailIcon} />
+// //                           <div>
+// //                             <div style={styles.detailLabel}>Available Beds</div>
+// //                             <div style={styles.detailValue}>{hospital.bedAvailability || 0} ({getBedStatusText(hospital.bedAvailability || 0)})</div>
+// //                           </div>
+// //                         </div>
+// //                         <div style={styles.detailLeft}>
+// //                           <Clock size={15} style={styles.detailIcon} />
+// //                           <div>
+// //                             <div style={styles.detailLabel}>Timings</div>
+// //                             <div style={styles.detailValue}>{hospital.timings || '24/7'}</div>
+// //                           </div>
+// //                         </div>
+// //                       </div>
+// //                       <div style={styles.detailItem}>
+// //                         <div style={styles.detailLeft}>
+// //                           <Phone size={15} style={styles.detailIcon} />
+// //                           <div>
+// //                             <div style={styles.detailLabel}>Contact</div>
+// //                             <div style={styles.detailValue}>{hospital.contact || hospital.address?.contact || 'N/A'}</div>
+// //                           </div>
+// //                         </div>
+// //                       </div>
+// //                     </div>
+// //                   </div>
+// //                   <div>
+// //                     <div style={styles.ratingContainer} className="rating-container">
+// //                       <div style={{ display: 'flex', alignItems: 'center' }}>
+// //                         {renderStars(hospital.averageRating || 0)}
+// //                         <span style={styles.ratingValue}>{(hospital.averageRating || 0).toFixed(1)}</span>
+// //                       </div>
+// //                       <span style={styles.ratingCount}>({hospital.ratingCount || 0} reviews)</span>
+// //                     </div>
+// //                     <button
+// //                       onClick={(e) => handleGiveFeedback(hospital._id, e)}
+// //                       style={styles.giveFeedbackButton}
+// //                       className="give-feedback-btn"
+// //                     >
+// //                       <Star size={16} />
+// //                       {hospital.ratingCount > 0 ? 'Rate & Review' : 'Be the first to rate'}
+// //                     </button>
+// //                   </div>
+// //                 </div>
+// //               </div>
+// //             ))}
+// //           </div>
+// //         )}
+// //       </div>
+// //     </div>
+// //   );
+// // }
+
+// // export default HospitalList;
+
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import ChatBot from './ChatBot';
+// import { useNavigate } from 'react-router-dom';
+// import {
+//   Search,
+//   Hospital,
+//   TrendingUp,
+//   AlertCircle,
+//   Star,
+//   MapPin,
+//   Phone,
+//   Clock,
+//   Bed
+// } from 'lucide-react';
+
+// const HospitalList = ({ onSelect, token, user }) => {
+//   const [hospitals, setHospitals] = useState([]);
+//   const [searchQuery, setSearchQuery] = useState('');
+//   const [loading, setLoading] = useState(true);
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     const fetchHospitalsWithRatings = async () => {
+//       try {
+//         setLoading(true);
+//         const res = await axios.get('http://localhost:5000/api/hospitals');
+
+//         const hospitalsWithRatings = await Promise.all(
+//           res.data.map(async (hospital) => {
+//             try {
+//               const ratingsRes = await axios.get(
+//                 `http://localhost:5000/api/feedback/hospital/${hospital._id}`
+//               );
+//               return {
+//                 ...hospital,
+//                 averageRating: ratingsRes.data.averageRating || 0,
+//                 ratingCount: ratingsRes.data.ratingCount || 0,
+//               };
+//             } catch (error) {
+//               return { ...hospital, averageRating: 0, ratingCount: 0 };
+//             }
+//           })
+//         );
+
+//         setHospitals(hospitalsWithRatings);
+//       } catch (err) {
+//         console.error('Error fetching hospitals:', err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+//     fetchHospitalsWithRatings();
+//   }, []);
+
+//   const filteredHospitals = hospitals.filter(hospital => {
+//     if (!searchQuery) return true;
+//     const query = searchQuery.toLowerCase();
+//     return (
+//       hospital.name?.toLowerCase().includes(query) ||
+//       hospital.address?.city?.toLowerCase().includes(query) ||
+//       hospital.address?.state?.toLowerCase().includes(query) ||
+//       hospital.address?.pincode?.toString().includes(query)
+//     );
+//   });
+
+//   const totalHospitals = hospitals.length;
+//   const totalBeds = hospitals.reduce((sum, h) => sum + (h.bedAvailability || 0), 0);
+//   const averageBeds = totalHospitals > 0 ? Math.round(totalBeds / totalHospitals) : 0;
+//   const lowAvailabilityHospitals = hospitals.filter(h => (h.bedAvailability || 0) > 0 && (h.bedAvailability || 0) <= 10).length;
+
+//   const getBedStatusText = (count) => count === 0 ? 'No Beds' : count <= 10 ? 'Limited' : 'Available';
+
+//   const getHospitalImage = (hospital) => {
+//     if (hospital.image) return hospital.image;
+//     const defaults = [
+//       'https://images.unsplash.com/photo-1586773860418-dc22f8b874bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80',
+//       'https://images.unsplash.com/photo-1516549655669-df565bc5d1d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80',
+//       'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80',
+//       'https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80'
+//     ];
+//     const index = hospital._id ? hospital._id.split('').reduce((a, c) => a + c.charCodeAt(0), 0) % defaults.length : 0;
+//     return defaults[index];
+//   };
+
+//   const renderStars = (rating) => {
+//     const stars = [];
+//     const full = Math.floor(rating);
+//     const hasHalf = rating - full >= 0.5;
+//     for (let i = 0; i < 5; i++) {
+//       if (i < full) stars.push(<Star key={i} size={16} fill="#f59e0b" stroke="#f59e0b" />);
+//       else if (i === full && hasHalf) stars.push(<Star key={i} size={16} fill="#d1d5db" stroke="#f59e0b" />);
+//       else stars.push(<Star key={i} size={16} fill="none" stroke="#d1d5db" />);
+//     }
+//     return stars;
+//   };
+
+//   const handleGiveFeedback = (hospitalId, e) => {
+//     e.stopPropagation();
+//     const hospital = hospitals.find(h => h._id === hospitalId);
+//     navigate(`/feedback/${hospitalId}`, { state: { hospitalName: hospital?.name || 'Hospital' } });
+//   };
+
+//   return (
+//     <div style={styles.pageContainer}>
+//       <div style={styles.backgroundElements}>
+//         <div className="bg-blob" />
+//         <div className="bg-blob" />
+//       </div>
+//       <ChatBot />
+//       <div style={styles.contentWrapper}>
+//         <div style={styles.heroSection}>
+//           <h1 style={styles.title}>Hospital Queue Management</h1>
+//           <p style={styles.subtitle}>
+//             Find trusted hospitals with real-time bed availability, verified patient ratings, and detailed insights for better healthcare choices.
+//           </p>
+//           <div style={styles.searchSection}>
+//             <div style={styles.searchContainer}>
+//               <input
+//                 type="text"
+//                 placeholder="Search by hospital name, city, state, or pincode..."
+//                 value={searchQuery}
+//                 onChange={(e) => setSearchQuery(e.target.value)}
+//                 className="search-input"
+//                 style={styles.searchInput}
+//               />
+//               <div className="search-icon" style={styles.searchIcon}>
+//                 <Search size={28} />
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+
+//         <div style={styles.statsSection}>
+//           <div style={styles.statItem}>
+//             <div style={styles.statIconContainer}><Hospital size={28} /></div>
+//             <div><div style={styles.statNumber}>{totalHospitals}</div><div style={styles.statLabel}>Total Hospitals</div></div>
+//           </div>
+//           <div style={styles.statItem}>
+//             <div style={styles.statIconContainer}><Bed size={28} /></div>
+//             <div><div style={styles.statNumber}>{totalBeds}</div><div style={styles.statLabel}>Available Beds</div></div>
+//           </div>
+//           <div style={styles.statItem}>
+//             <div style={styles.statIconContainer}><TrendingUp size={28} /></div>
+//             <div><div style={styles.statNumber}>{averageBeds}</div><div style={styles.statLabel}>Average Beds</div></div>
+//           </div>
+//           <div style={styles.statItem}>
+//             <div style={styles.statIconContainer}><AlertCircle size={28} /></div>
+//             <div><div style={styles.statNumber}>{lowAvailabilityHospitals}</div><div style={styles.statLabel}>Low Availability</div></div>
+//           </div>
+//         </div>
+
+//         {!loading && filteredHospitals.length > 0 && (
+//           <div style={styles.resultsCount}>
+//             Showing {filteredHospitals.length} of {hospitals.length} hospitals{searchQuery && ` for "${searchQuery}"`}
+//           </div>
+//         )}
+
+//         {loading ? (
+//           <div style={{ textAlign: 'center', padding: '8rem 2rem' }}>
+//             <div style={{ width: '80px', height: '80px', border: '6px solid rgba(226,232,240,0.3)', borderTopColor: '#3b82f6', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 2rem' }}></div>
+//             <h3 style={{ margin: '0 0 1rem', fontSize: '1.8rem', color: '#0f172a' }}>Loading Hospitals...</h3>
+//           </div>
+//         ) : filteredHospitals.length === 0 ? (
+//           <div style={{ textAlign: 'center', padding: '6rem 2rem', background: '#fff', borderRadius: '24px', border: '2px dashed #e2e8f0' }}>
+//             <h2 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#334155' }}>
+//               {searchQuery ? 'No Hospitals Found' : 'No Hospitals Available'}
+//             </h2>
+//             <p style={{ color: '#64748b', fontSize: '1.2rem' }}>
+//               {searchQuery ? 'Try a different search term.' : 'The system currently has no registered hospitals.'}
+//             </p>
+//           </div>
+//         ) : (
+//           <div style={styles.hospitalsGrid}>
+//             {filteredHospitals.map((hospital) => (
+//               <div
+//                 key={hospital._id}
+//                 style={styles.hospitalCard}
+//                 className="hospital-card"
+//                 onClick={() => onSelect && onSelect(hospital)}
+//               >
+//                 <div style={styles.cardImageContainer}>
+//                   <img
+//                     src={getHospitalImage(hospital)}
+//                     alt={hospital.name}
+//                     style={styles.cardImage}
+//                     onError={(e) => e.target.src = 'https://images.unsplash.com/photo-1516549655669-df565bc5d1d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80'}
+//                   />
+//                   <div className="status-badge-image" style={styles.statusBadgeImage}>
+//                     {hospital.status || 'Active'}
+//                   </div>
+//                 </div>
+//                 <div style={styles.cardContent}>
+//                   <div>
+//                     <h3 style={styles.hospitalName} className="hospital-name">{hospital.name}</h3>
+//                     <div style={styles.hospitalLocation}>
+//                       <MapPin size={15} />
+//                       <span>{hospital.address?.city || 'City'}, {hospital.address?.state || 'State'}</span>
+//                     </div>
+//                     <div style={styles.detailsGrid}>
+//                       <div style={styles.detailItem}>
+//                         <div style={styles.detailLeft}>
+//                           <Bed size={15} style={styles.detailIcon} />
+//                           <div>
+//                             <div style={styles.detailLabel}>Available Beds</div>
+//                             <div style={styles.detailValue}>{hospital.bedAvailability || 0} ({getBedStatusText(hospital.bedAvailability || 0)})</div>
+//                           </div>
+//                         </div>
+//                         <div style={styles.detailLeft}>
+//                           <Clock size={15} style={styles.detailIcon} />
+//                           <div>
+//                             <div style={styles.detailLabel}>Timings</div>
+//                             <div style={styles.detailValue}>{hospital.timings || '24/7'}</div>
+//                           </div>
+//                         </div>
+//                       </div>
+//                       <div style={styles.detailItem}>
+//                         <div style={styles.detailLeft}>
+//                           <Phone size={15} style={styles.detailIcon} />
+//                           <div>
+//                             <div style={styles.detailLabel}>Contact</div>
+//                             <div style={styles.detailValue}>{hospital.contact || hospital.address?.contact || 'N/A'}</div>
+//                           </div>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   </div>
+//                   <div>
+//                     <div style={styles.ratingContainer} className="rating-container">
+//                       <div style={{ display: 'flex', alignItems: 'center' }}>
+//                         {renderStars(hospital.averageRating || 0)}
+//                         <span style={styles.ratingValue}>{(hospital.averageRating || 0).toFixed(1)}</span>
+//                       </div>
+//                       <span style={styles.ratingCount}>({hospital.ratingCount || 0} reviews)</span>
+//                     </div>
+//                     <button
+//                       onClick={(e) => handleGiveFeedback(hospital._id, e)}
+//                       style={styles.giveFeedbackButton}
+//                       className="give-feedback-btn"
+//                     >
+//                       <Star size={16} />
+//                       {hospital.ratingCount > 0 ? 'Rate & Review' : 'Be the first to rate'}
+//                     </button>
+//                   </div>
+//                 </div>
+//               </div>
+//             ))}
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// const styles = {
+//   pageContainer: {
+//     minHeight: '100vh',
+//     background: 'linear-gradient(135deg, #f8fafc 0%, #eef2ff 60%, #f1f5f9 100%)',
+//     fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+//     color: '#1e293b',
+//     position: 'relative',
+//     display: 'flex',
+//     flexDirection: 'column'
+//   },
+//   backgroundElements: {
+//     position: 'fixed',
+//     inset: 0,
+//     zIndex: 0,
+//     pointerEvents: 'none'
+//   },
+//   contentWrapper: {
+//     flex: '1 0 auto',
+//     width: '100%',
+//     maxWidth: '1440px',
+//     margin: '0 auto',
+//     padding: '2rem 2rem 6rem',
+//     position: 'relative',
+//     zIndex: 1
+//   },
+//   heroSection: {
+//     padding: '3rem 0 4rem',
+//     textAlign: 'center'
+//   },
+//   title: {
+//     fontSize: '3.5rem',
+//     fontWeight: '800',
+//     background: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%)',
+//     WebkitBackgroundClip: 'text',
+//     WebkitTextFillColor: 'transparent',
+//     margin: '0 0 1.5rem 0',
+//     letterSpacing: '-0.03em',
+//     lineHeight: '1.2'
+//   },
+//   subtitle: {
+//     fontSize: '1.35rem',
+//     color: '#64748b',
+//     maxWidth: '860px',
+//     margin: '0 auto 3rem',
+//     lineHeight: '1.7',
+//     fontWeight: '500'
+//   },
+//   searchSection: {
+//     maxWidth: '860px',
+//     margin: '0 auto 4rem'
+//   },
+//   searchContainer: {
+//     position: 'relative',
+//     width: '100%'
+//   },
+//   searchInput: {
+//     width: '100%',
+//     padding: '1.4rem 4rem 1.4rem 2rem',
+//     background: '#ffffff',
+//     border: 'none',
+//     borderRadius: '20px',
+//     fontSize: '1.15rem',
+//     color: '#1e293b',
+//     outline: 'none',
+//     boxShadow: '0 12px 40px rgba(0, 0, 0, 0.1)',
+//     transition: 'all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1)'
+//   },
+//   searchIcon: {
+//     position: 'absolute',
+//     right: '1.8rem',
+//     top: '50%',
+//     transform: 'translateY(-50%)',
+//     color: '#64748b',
+//     transition: 'all 0.4s ease'
+//   },
+//   statsSection: {
+//     display: 'grid',
+//     gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+//     gap: '1.8rem',
+//     marginBottom: '4rem',
+//     padding: '2.5rem',
+//     background: 'rgba(255, 255, 255, 0.95)',
+//     backdropFilter: 'blur(12px)',
+//     borderRadius: '24px',
+//     border: '1px solid rgba(226, 232, 240, 0.7)',
+//     boxShadow: '0 20px 50px rgba(0, 0, 0, 0.1)'
+//   },
+//   statItem: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     gap: '1.2rem',
+//     padding: '1.8rem',
+//     borderRadius: '18px',
+//     background: 'rgba(255, 255, 255, 0.6)',
+//     border: '1px solid rgba(226, 232, 240, 0.5)',
+//     transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+//     cursor: 'default'
+//   },
+//   statIconContainer: {
+//     width: '60px',
+//     height: '60px',
+//     borderRadius: '16px',
+//     display: 'flex',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//     background: 'linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%)',
+//     color: '#1e40af',
+//     transition: 'all 0.5s ease'
+//   },
+//   statNumber: {
+//     fontSize: '2.5rem',
+//     fontWeight: '800',
+//     background: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)',
+//     WebkitBackgroundClip: 'text',
+//     WebkitTextFillColor: 'transparent',
+//     lineHeight: '1'
+//   },
+//   statLabel: {
+//     fontSize: '1rem',
+//     color: '#64748b',
+//     fontWeight: '600',
+//     textTransform: 'uppercase',
+//     letterSpacing: '0.6px'
+//   },
+//   resultsCount: {
+//     fontSize: '1.1rem',
+//     color: '#475569',
+//     marginBottom: '2rem',
+//     fontWeight: '600',
+//     padding: '1rem 1.5rem',
+//     background: '#f1f5f9',
+//     borderRadius: '16px',
+//     display: 'inline-block',
+//     border: '1px solid #e2e8f0'
+//   },
+//   hospitalsGrid: {
+//     display: 'grid',
+//     gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+//     gap: '1.8rem',
+//     marginBottom: '4rem'
+//   },
+//   hospitalCard: {
+//     background: '#ffffff',
+//     borderRadius: '18px',
+//     overflow: 'hidden',
+//     border: '1px solid #e2e8f0',
+//     boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
+//     transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
+//     cursor: 'pointer',
+//     display: 'flex',
+//     flexDirection: 'column'
+//   },
+//   cardImageContainer: {
+//     height: '180px',
+//     overflow: 'hidden',
+//     position: 'relative'
+//   },
+//   cardImage: {
+//     width: '100%',
+//     height: '100%',
+//     objectFit: 'cover',
+//     transition: 'transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1)'
+//   },
+//   statusBadgeImage: {
+//     position: 'absolute',
+//     top: '0.7rem',
+//     right: '0.7rem',
+//     padding: '0.3rem 0.8rem',
+//     borderRadius: '20px',
+//     fontSize: '0.72rem',
+//     fontWeight: '700',
+//     textTransform: 'uppercase',
+//     letterSpacing: '0.5px',
+//     background: 'rgba(255, 255, 255, 0.96)',
+//     backdropFilter: 'blur(12px)',
+//     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+//     transition: 'all 0.4s ease'
+//   },
+//   cardContent: {
+//     padding: '0.9rem',
+//     flexGrow: 1,
+//     display: 'flex',
+//     flexDirection: 'column',
+//     justifyContent: 'space-between'
+//   },
+//   hospitalName: {
+//     fontSize: '1.2rem',
+//     fontWeight: '700',
+//     marginBottom: '0.3rem',
+//     color: '#0f172a',
+//     transition: 'color 0.4s ease'
+//   },
+//   hospitalLocation: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     gap: '0.4rem',
+//     color: '#64748b',
+//     fontSize: '0.9rem',
+//     marginBottom: '0.6rem'
+//   },
+//   detailsGrid: {
+//     display: 'grid',
+//     gridTemplateColumns: '1fr',
+//     gap: '0.5rem',
+//     marginBottom: '0.5rem'
+//   },
+//   detailItem: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     justifyContent: 'space-between',
+//     gap: '0.8rem',
+//     padding: '0.5rem',
+//     background: '#f8fafc',
+//     borderRadius: '12px',
+//     border: '1px solid #e2e8f0',
+//     transition: 'all 0.4s ease'
+//   },
+//   detailLeft: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     gap: '0.5rem',
+//     flex: 1
+//   },
+//   detailIcon: {
+//     color: '#3b82f6',
+//     flexShrink: 0
+//   },
+//   detailLabel: {
+//     fontSize: '0.7rem',
+//     color: '#94a3b8',
+//     fontWeight: '600',
+//     textTransform: 'uppercase',
+//     letterSpacing: '0.5px'
+//   },
+//   detailValue: {
+//     fontSize: '0.85rem',
+//     fontWeight: '600',
+//     color: '#334155'
+//   },
+//   ratingContainer: {
+//     display: 'flex',
+//     alignItems: 'center',
+//     justifyContent: 'space-between',
+//     padding: '0.6rem 0.9rem',
+//     background: 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)',
+//     borderRadius: '12px',
+//     border: '1px solid #fde68a',
+//     marginBottom: '0.5rem',
+//     transition: 'all 0.5s ease'
+//   },
+//   ratingValue: {
+//     fontSize: '1.1rem',
+//     fontWeight: '800',
+//     color: '#92400e',
+//     marginLeft: '0.4rem'
+//   },
+//   ratingCount: {
+//     fontSize: '0.8rem',
+//     color: '#92400e',
+//     fontWeight: '600'
+//   },
+//   giveFeedbackButton: {
+//     width: '100%',
+//     padding: '0.75rem',
+//     background: 'linear-gradient(135deg, #3b82f6 0%, #1e40af 100%)',
+//     color: 'white',
+//     border: 'none',
+//     borderRadius: '12px',
+//     fontSize: '0.9rem',
+//     fontWeight: '700',
+//     cursor: 'pointer',
+//     display: 'flex',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//     gap: '0.4rem',
+//     transition: 'all 0.5s ease',
+//     position: 'relative',
+//     overflow: 'hidden'
+//   }
+// };
+
+// // Enhanced hover animations and smooth interactions
+// if (typeof document !== 'undefined') {
+//   const styleSheet = document.createElement('style');
+//   styleSheet.textContent = `
+//     @keyframes floatBg {
+//       0%, 100% { transform: translateY(0) rotate(0deg); }
+//       50% { transform: translateY(-20px) rotate(2deg); }
+//     }
+//     .bg-blob {
+//       position: absolute;
+//       border-radius: 50%;
+//       background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(99, 102, 241, 0.05));
+//       animation: floatBg 28s infinite ease-in-out;
+//       opacity: 0.7;
+//     }
+//     .bg-blob:nth-child(1) {
+//       width: 700px;
+//       height: 700px;
+//       top: -350px;
+//       right: -250px;
+//       animation-delay: 0s;
+//     }
+//     .bg-blob:nth-child(2) {
+//       width: 600px;
+//       height: 600px;
+//       bottom: -300px;
+//       left: -200px;
+//       animation-delay: 14s;
+//     }
+
+//     .search-input:hover {
+//       transform: translateY(-8px);
+//       box-shadow: 0 25px 70px rgba(59, 130, 246, 0.3);
+//     }
+//     .search-input:focus {
+//       transform: translateY(-10px);
+//       box-shadow: 0 30px 80px rgba(59, 130, 246, 0.35), 0 0 0 5px rgba(59, 130, 246, 0.2);
+//       border: 2px solid #3b82f6;
+//     }
+//     .search-input:focus ~ .search-icon {
+//       color: #3b82f6;
+//       transform: translateY(-50%) scale(1.4);
+//     }
+
+//     .stat-item:hover {
+//       transform: translateY(-12px) scale(1.04);
+//       boxShadow: '0 35px 70px rgba(59, 130, 246, 0.25)';
+//     }
+//     .stat-item:hover .stat-icon-container {
+//       transform: scale(1.2) rotate(12deg);
+//       background: linear-gradient(135deg, #bfdbfe 0%, #93c5fd 100%);
+//     }
+
+//     .hospital-card:hover {
+//       transform: translateY(-16px) scale(1.04);
+//       boxShadow: '0 30px 70px rgba(37, 99, 235, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.3)';
+//     }
+//     .hospital-card:hover .card-image {
+//       transform: scale(1.2);
+//     }
+//     .hospital-card:hover .hospital-name {
+//       color: #2563eb;
+//     }
+//     .hospital-card:hover .detail-item {
+//       transform: translateY(-4px);
+//       background: #f0f9ff;
+//       boxShadow: 0 10px 25px rgba(59, 130, 246, 0.1);
+//     }
+//     .hospital-card:hover .status-badge-image {
+//       transform: scale(1.15);
+//       background: rgba(37, 99, 235, 0.9);
+//       color: white;
+//     }
+//     .rating-container:hover {
+//       transform: translateY(-6px) scale(1.02);
+//       boxShadow: 0 12px 30px rgba(251, 191, 36, 0.2);
+//     }
+//     .give-feedback-btn:hover {
+//       transform: translateY(-6px) scale(1.05);
+//       boxShadow: 0 25px 50px rgba(59, 130, 246, 0.5);
+//       background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+//     }
+//   `;
+//   document.head.appendChild(styleSheet);
+// }
+
+// export default HospitalList;
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ChatBot from './ChatBot';
-import HeroVideo1 from '../assets/hospital.mp4'; // Add your video file
+import { useNavigate } from 'react-router-dom';
+import {
+  Search,
+  Hospital,
+  TrendingUp,
+  AlertCircle,
+  Star,
+  MapPin,
+  Phone,
+  Clock,
+  Bed
+} from 'lucide-react';
 
-const styles = {
-  pageContainer: {
-    minHeight: '100vh',
-    background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)',
-    padding: '6rem 0 4rem',
-    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-    color: '#1e293b',
-    position: 'relative'
-  },
-  
-  header: {
-    textAlign: 'right',
-    marginBottom: '3rem',
-    padding: '0 1rem',
-    animation: '$fadeIn 0.8s ease-out',
-    width: '100%'
-  },
-  
-  title: {
-    fontSize: '2.4rem',
-    fontWeight: '700',
-    color: '#0f172a',
-    margin: '0 0 0.75rem 0',
-    letterSpacing: '-0.025em',
-    background: 'linear-gradient(135deg, #0f172a 0%, #475569 100%)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent'
-  },
-  
-  subtitle: {
-    fontSize: '1.3rem',
-    fontWeight: '600',
-    color: '#ffffff',
-    margin: '0 0 2rem 0',
-    maxWidth: '800px',
-    lineHeight: '1.6',
-    textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
-    padding: '1.5rem',
-    borderRadius: '20px',
-    border: '2px solid rgba(255, 255, 255, 0.4)',
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
-    backdropFilter: 'blur(15px)',
-    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.8)',
-    marginLeft: 'auto'
-  },
-  
-  searchSection: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginBottom: '2.5rem',
-    marginTop: '-2rem',
-    padding: '0 1rem',
-    animation: '$slideUp 0.6s ease-out 0.2s both',
-    width: '40%',
-    marginRight:'17rem'
-  },
-  
-  searchContainer: {
-    width: '100%',
-    maxWidth: '1000px',
-    position: 'relative'
-  },
-  
-  searchInput: {
-    width: '100%',
-    padding: '1rem 3rem 1rem 1.5rem',
-    background: '#ffffff',
-    border: '1px solid #e2e8f0',
-    borderRadius: '12px',
-    fontSize: '1rem',
-    color: '#1e293b',
-    transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-    outline: 'none',
-    boxShadow: '0 8px 30px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.05)',
-    '&:focus': {
-      borderColor: '#2563eb',
-      boxShadow: '0 12px 40px rgba(37, 99, 235, 0.15), 0 0 0 4px rgba(37, 99, 235, 0.1)',
-      transform: 'translateY(-4px) scale(1.02)'
-    },
-    '&::placeholder': {
-      color: '#94a3b8'
-    }
-  },
-  
-  searchIcon: {
-    position: 'absolute',
-    right: '1.2rem',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    color: '#64748b',
-    fontSize: '1.2rem'
-  },
-  
-  statsSection: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-    gap: '1.5rem',
-    marginBottom: '3rem',
-    padding: '2rem',
-    background: '#ffffff',
-    borderRadius: '16px',
-    border: '1px solid #e2e8f0',
-    boxShadow: '0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.04)',
-    transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-    animation: '$slideUp 0.6s ease-out 0.3s both'
-  },
-  
-  statItem: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '1rem',
-    textAlign: 'center',
-    transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-    '&:hover': {
-      transform: 'translateY(-8px) scale(1.05)',
-      boxShadow: '0 15px 30px rgba(37, 99, 235, 0.12)',
-      borderRadius: '12px',
-      background: '#f8fafc'
-    }
-  },
-  
-  statNumber: {
-    fontSize: '2.2rem',
-    fontWeight: '700',
-    background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    marginBottom: '0.5rem',
-    lineHeight: '1',
-    filter: 'drop-shadow(0 4px 8px rgba(37, 99, 235, 0.2))'
-  },
-  
-  statLabel: {
-    fontSize: '0.9rem',
-    color: '#64748b',
-    fontWeight: '600',
-    textTransform: 'uppercase',
-    letterSpacing: '1px'
-  },
-  
-  hospitalsGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-    gap: '2rem',
-    padding: '0 1rem'
-  },
-  
-  hospitalCard: {
-    background: '#ffffff',
-    borderRadius: '16px',
-    overflow: 'hidden',
-    border: '1px solid #e2e8f0',
-    transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
-    cursor: 'pointer',
-    height: '420px',
-    display: 'flex',
-    flexDirection: 'column',
-    boxShadow: '0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07)',
-    position: 'relative',
-    animation: '$slideUp 0.6s ease-out',
-    '&:hover': {
-      transform: 'translateY(-12px) scale(1.03)',
-      boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(37, 99, 235, 0.1)',
-      borderColor: '#cbd5e1',
-      '& $cardImage': {
-        transform: 'scale(1.1)'
-      },
-      '& $hospitalName': {
-        color: '#2563eb'
-      }
-    }
-  },
-  
-  cardImageContainer: {
-    height: '240px',
-    overflow: 'hidden',
-    position: 'relative',
-    '&::after': {
-      content: '""',
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      height: '40px',
-      background: 'linear-gradient(to top, rgba(255,255,255,0.95) 0%, transparent 100%)'
-    }
-  },
-  
-  cardImage: {
-    width: '100%',
-    height: '170%',
-    objectFit: 'cover',
-    objectPosition: 'center',
-    transition: 'transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)'
-  },
-  
-  cardContent: {
-    padding: '1.25rem',
-    flexGrow: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between'
-  },
-  
-  hospitalName: {
-    fontSize: '1.2rem',
-    fontWeight: '700',
-    marginBottom: '0.5rem',
-    color: '#0f172a',
-    lineHeight: '1.3',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    transition: 'color 0.3s ease'
-  },
-  
-  videoFrame: {
-    position: 'relative',
-    width: '100vw',
-    margin: '0 auto 3rem',
-    marginTop: '-100px',
-    marginLeft: 'calc(-50vw + 50%)',
-    marginRight: 'calc(-50vw + 50%)',
-    height: '100vh',
-    overflow: 'hidden',
-  },
-  
-  videoBackground: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-    zIndex: 1
-  },
-  
-  videoContent: {
-    position: 'relative',
-    zIndex: 2,
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-    padding: '1rem 3rem',
-    background: 'rgba(0, 0, 0, 0.3)',
-  },
-  
-  hospitalLocation: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    color: '#64748b',
-    fontSize: '0.85rem',
-    marginBottom: '1rem',
-    minHeight: '1.5rem'
-  },
-  
-  detailsGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(2, 1fr)',
-    gap: '0.75rem',
-    marginBottom: '1rem'
-  },
-  
-  detailItem: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '0.25rem',
-    padding: '0.6rem',
-    background: '#f8fafc',
-    borderRadius: '10px',
-    transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-    border: '1px solid transparent',
-    '&:hover': {
-      background: '#ffffff',
-      transform: 'translateY(-3px)',
-      borderColor: '#e2e8f0',
-      boxShadow: '0 6px 16px rgba(0, 0, 0, 0.08)'
-    }
-  },
-  
-  detailLabel: {
-    fontSize: '0.7rem',
-    color: '#94a3b8',
-    fontWeight: '600',
-    textTransform: 'uppercase',
-    letterSpacing: '0.5px'
-  },
-  
-  detailValue: {
-    fontSize: '0.85rem',
-    fontWeight: '600',
-    color: '#475569',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap'
-  },
-  
-  bedStatus: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: '0.6rem 0.8rem',
-    background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
-    borderRadius: '12px',
-    border: '1px solid #dbeafe',
-    marginTop: 'auto',
-    transition: 'all 0.3s ease',
-    '&:hover': {
-      transform: 'translateY(-3px)',
-      boxShadow: '0 10px 20px rgba(37, 99, 235, 0.15)',
-      background: 'linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%)'
-    }
-  },
-  
-  bedCount: {
-    fontSize: '1.5rem',
-    fontWeight: '700',
-    background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    filter: 'drop-shadow(0 2px 4px rgba(37, 99, 235, 0.2))'
-  },
-  
-  bedLabel: {
-    fontSize: '0.8rem',
-    color: '#2563eb',
-    fontWeight: '600'
-  },
-  
-  bedCritical: {
-    background: 'linear-gradient(135deg, #fee2e2 0%, #fecaca 100%)',
-    borderColor: '#fecaca',
-    '& $bedCount': {
-      background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)',
-      WebkitBackgroundClip: 'text'
-    },
-    '& $bedLabel': {
-      color: '#dc2626'
-    }
-  },
-  
-  bedWarning: {
-    background: 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)',
-    borderColor: '#fde68a',
-    '& $bedCount': {
-      background: 'linear-gradient(135deg, #d97706 0%, #b45309 100%)',
-      WebkitBackgroundClip: 'text'
-    },
-    '& $bedLabel': {
-      color: '#d97706'
-    }
-  },
-  
-  emptyState: {
-    textAlign: 'center',
-    padding: '3rem 2rem',
-    color: '#64748b',
-    fontSize: '1.1rem',
-    background: '#ffffff',
-    borderRadius: '16px',
-    border: '1px solid #e2e8f0',
-    maxWidth: '500px',
-    margin: '2rem auto',
-    boxShadow: '0 15px 35px rgba(0, 0, 0, 0.1)',
-    animation: '$fadeIn 0.8s ease-out'
-  },
-  
-  emptyStateTitle: {
-    fontSize: '1.6rem',
-    fontWeight: '700',
-    marginBottom: '1rem',
-    color: '#0f172a'
-  },
-  
-  emptyStateSubtitle: {
-    fontSize: '1rem',
-    color: '#64748b',
-    marginBottom: '2rem',
-    maxWidth: '400px',
-    margin: '0 auto 2rem'
-  },
-  
-  loadingContainer: {
-    textAlign: 'center',
-    padding: '5rem 2rem',
-    color: '#64748b',
-    fontSize: '1.2rem',
-    animation: '$fadeIn 0.8s ease-out'
-  },
-  
-  loadingSpinner: {
-    display: 'inline-block',
-    width: '50px',
-    height: '50px',
-    border: '4px solid #e2e8f0',
-    borderTopColor: '#2563eb',
-    borderRadius: '50%',
-    animation: '$spin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite',
-    marginBottom: '1.5rem',
-    boxShadow: '0 8px 20px rgba(37, 99, 235, 0.2)'
-  },
-  
-  statusBadge: {
-    display: 'inline-block',
-    padding: '0.25rem 0.75rem',
-    borderRadius: '20px',
-    fontSize: '0.7rem',
-    fontWeight: '600',
-    textTransform: 'uppercase',
-    letterSpacing: '0.5px',
-    transition: 'all 0.3s ease',
-    boxShadow: '0 3px 8px rgba(0, 0, 0, 0.08)'
-  },
-  
-  activeStatus: {
-    background: 'linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%)',
-    color: '#16a34a',
-    border: '1px solid #86efac'
-  },
-  
-  maintenanceStatus: {
-    background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
-    color: '#d97706',
-    border: '1px solid #fcd34d'
-  },
-  
-  inactiveStatus: {
-    background: 'linear-gradient(135deg, #fee2e2 0%, #fecaca 100%)',
-    color: '#dc2626',
-    border: '1px solid #fca5a5'
-  },
-  
-  chatbotHelper: {
-    position: 'fixed',
-    bottom: '100px',
-    right: '30px',
-    background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
-    color: 'white',
-    padding: '0.75rem 1.5rem',
-    borderRadius: '20px',
-    fontSize: '0.9rem',
-    boxShadow: '0 10px 25px rgba(37, 99, 235, 0.3)',
-    zIndex: 999,
-    animation: '$slideUp 0.6s ease-out',
-    maxWidth: '300px',
-    pointerEvents: 'none',
-    opacity: 0.9,
-    '&::after': {
-      content: '""',
-      position: 'absolute',
-      bottom: '-8px',
-      right: '20px',
-      width: '0',
-      height: '0',
-      borderLeft: '8px solid transparent',
-      borderRight: '8px solid transparent',
-      borderTop: '8px solid #1d4ed8'
-    }
-  },
-  
-  '@keyframes fadeIn': {
-    from: { opacity: 0 },
-    to: { opacity: 1 }
-  },
-  
-  '@keyframes slideUp': {
-    from: { 
-      opacity: 0, 
-      transform: 'translateY(30px) scale(0.95)' 
-    },
-    to: { 
-      opacity: 1, 
-      transform: 'translateY(0) scale(1)' 
-    }
-  },
-  
-  '@keyframes spin': {
-    '0%': { transform: 'rotate(0deg)' },
-    '100%': { transform: 'rotate(360deg)' }
-  },
-  
-  '@keyframes pulse': {
-    '0%, 100%': { opacity: 1 },
-    '50%': { opacity: 0.7 }
-  }
-};
-
-// Add minimal global styles
-if (typeof document !== 'undefined') {
-  const styleElement = document.createElement('style');
-  styleElement.textContent = `
-    @keyframes cardAppear {
-      from { 
-        opacity: 0; 
-        transform: translateY(20px) scale(0.98); 
-      }
-      to { 
-        opacity: 1; 
-        transform: translateY(0) scale(1); 
-      }
-    }
-    
-    .hospital-card {
-      animation: cardAppear 0.5s ease-out forwards;
-    }
-    
-    .card-image-zoom {
-      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    
-    .hospital-card:hover .card-image-zoom {
-      transform: scale(1.08);
-    }
-  `;
-  document.head.appendChild(styleElement);
-}
-
-function HospitalList({ onSelect }) {
+const HospitalList = ({ onSelect, token, user }) => {
   const [hospitals, setHospitals] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
-  const [showChatbotHelper, setShowChatbotHelper] = useState(true);
-  
+  const navigate = useNavigate();
+
   useEffect(() => {
-    const fetchHospitals = async () => {
+    const fetchHospitalsWithRatings = async () => {
       try {
         setLoading(true);
         const res = await axios.get('http://localhost:5000/api/hospitals');
-        setHospitals(res.data);
+
+        const hospitalsWithRatings = await Promise.all(
+          res.data.map(async (hospital) => {
+            try {
+              const ratingsRes = await axios.get(
+                `http://localhost:5000/api/feedback/hospital/${hospital._id}`
+              );
+              return {
+                ...hospital,
+                averageRating: ratingsRes.data.averageRating || 0,
+                ratingCount: ratingsRes.data.ratingCount || 0,
+              };
+            } catch (error) {
+              return { ...hospital, averageRating: 0, ratingCount: 0 };
+            }
+          })
+        );
+
+        setHospitals(hospitalsWithRatings);
       } catch (err) {
         console.error('Error fetching hospitals:', err);
       } finally {
         setLoading(false);
       }
     };
-    
-    fetchHospitals();
-    
-    const timer = setTimeout(() => {
-      setShowChatbotHelper(false);
-    }, 5000);
-    
-    return () => clearTimeout(timer);
+    fetchHospitalsWithRatings();
   }, []);
 
   const filteredHospitals = hospitals.filter(hospital => {
@@ -565,210 +1302,583 @@ function HospitalList({ onSelect }) {
   });
 
   const totalHospitals = hospitals.length;
-  const totalBeds = hospitals.reduce((sum, hospital) => sum + (hospital.bedAvailability || 0), 0);
+  const totalBeds = hospitals.reduce((sum, h) => sum + (h.bedAvailability || 0), 0);
   const averageBeds = totalHospitals > 0 ? Math.round(totalBeds / totalHospitals) : 0;
-  const lowAvailabilityHospitals = hospitals.filter(h => {
-    const beds = h.bedAvailability || 0;
-    return beds > 0 && beds <= 10;
-  }).length;
+  const lowAvailabilityHospitals = hospitals.filter(h => (h.bedAvailability || 0) > 0 && (h.bedAvailability || 0) <= 10).length;
 
-  const getBedStatusStyle = (bedCount) => {
-    if (bedCount === 0) return styles.bedCritical;
-    if (bedCount <= 10) return styles.bedWarning;
-    return {};
-  };
-
-  const getBedStatusText = (bedCount) => {
-    if (bedCount === 0) return 'No Beds';
-    if (bedCount <= 10) return 'Limited';
-    return 'Available';
-  };
-
-  const getStatusBadgeStyle = (status) => {
-    switch(status?.toLowerCase()) {
-      case 'active':
-        return { ...styles.statusBadge, ...styles.activeStatus };
-      case 'maintenance':
-        return { ...styles.statusBadge, ...styles.maintenanceStatus };
-      case 'inactive':
-        return { ...styles.statusBadge, ...styles.inactiveStatus };
-      default:
-        return { ...styles.statusBadge, ...styles.activeStatus };
-    }
-  };
+  const getBedStatusText = (count) => count === 0 ? 'No Beds' : count <= 10 ? 'Limited' : 'Available';
 
   const getHospitalImage = (hospital) => {
     if (hospital.image) return hospital.image;
-    
-    const defaultImages = [
-      'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1586773860418-dc22f8b874bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1516549655669-df565bc5d1d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    const defaults = [
+      'https://images.unsplash.com/photo-1586773860418-dc22f8b874bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80',
+      'https://images.unsplash.com/photo-1516549655669-df565bc5d1d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80',
+      'https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80',
+      'https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80'
     ];
-    
-    const hash = hospital._id ? 
-      hospital._id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) : 
-      Math.floor(Math.random() * defaultImages.length);
-    
-    return defaultImages[hash % defaultImages.length];
+    const index = hospital._id ? hospital._id.split('').reduce((a, c) => a + c.charCodeAt(0), 0) % defaults.length : 0;
+    return defaults[index];
+  };
+
+  const renderStars = (rating) => {
+    const stars = [];
+    const full = Math.floor(rating);
+    const hasHalf = rating - full >= 0.5;
+    for (let i = 0; i < 5; i++) {
+      if (i < full) stars.push(<Star key={i} size={16} fill="#f59e0b" stroke="#f59e0b" />);
+      else if (i === full && hasHalf) stars.push(<Star key={i} size={16} fill="#d1d5db" stroke="#f59e0b" />);
+      else stars.push(<Star key={i} size={16} fill="none" stroke="#d1d5db" />);
+    }
+    return stars;
+  };
+
+  const handleGiveFeedback = (hospitalId, e) => {
+    e.stopPropagation();
+    const hospital = hospitals.find(h => h._id === hospitalId);
+    navigate(`/feedback/${hospitalId}`, { state: { hospitalName: hospital?.name || 'Hospital' } });
   };
 
   return (
     <div style={styles.pageContainer}>
-      <div style={styles.videoFrame}>
-        <video autoPlay loop muted style={styles.videoBackground}>
-          <source src={HeroVideo1} type="video/mp4" />
-        </video>
-
-        <div style={styles.videoContent}>
-          <div style={styles.header}>
-            <h1 style={{
-              ...styles.title,
-              background: 'linear-gradient(90deg, #81adfeff, #59c6d9ff, #276dd7ff)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text', 
-              fontSize: "67px", 
-              textAlign: 'right',
-              marginLeft: 'auto'
-            }}>
-              Hospital Queue Management
-            </h1>
-            <p style={styles.subtitle}>
-              Our platform connects you with trusted hospitals, verified medical facilities,
-              and real-time bed availability. Whether you're seeking emergency care,
-              specialized treatment, or simply comparing services, we ensure transparency,
-              accessibility, and ease. Discover healthcare options near you with detailed
-              insights, reviews, and facility-wide statistics—empowering you to make
-              informed decisions for yourself and your loved ones.
-            </p>
-          </div>
-
+      <div style={styles.backgroundElements}>
+        <div className="bg-blob" />
+        <div className="bg-blob" />
+      </div>
+      <ChatBot />
+      <div style={styles.contentWrapper}>
+        <div style={styles.heroSection}>
+          <h1 style={styles.title} className="animated-title">
+            Hospital Queue Management
+          </h1>
+          <p style={styles.subtitle} className="animated-subtitle">
+            Find trusted hospitals with real-time bed availability, verified patient ratings, and detailed insights for better healthcare choices.
+          </p>
           <div style={styles.searchSection}>
             <div style={styles.searchContainer}>
               <input
                 type="text"
-                placeholder="Search hospitals by name, city, state, or pincode..."
+                placeholder="Search by hospital name, city, state, or pincode..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                className="search-input"
                 style={styles.searchInput}
               />
-              <span style={styles.searchIcon}>🔍</span>
+              <div className="search-icon" style={styles.searchIcon}>
+                <Search size={28} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div style={styles.statsSection}>
-        <div style={styles.statItem} className="stat-item">
-          <div style={styles.statNumber}>{totalHospitals}</div>
-          <div style={styles.statLabel}>Total Hospitals</div>
+        <div style={styles.statsSection}>
+          <div style={styles.statItem} className="stat-item">
+            <div style={styles.statIconContainer}><Hospital size={28} /></div>
+            <div><div style={styles.statNumber}>{totalHospitals}</div><div style={styles.statLabel}>Total Hospitals</div></div>
+          </div>
+          <div style={styles.statItem} className="stat-item">
+            <div style={styles.statIconContainer}><Bed size={28} /></div>
+            <div><div style={styles.statNumber}>{totalBeds}</div><div style={styles.statLabel}>Available Beds</div></div>
+          </div>
+          <div style={styles.statItem} className="stat-item">
+            <div style={styles.statIconContainer}><TrendingUp size={28} /></div>
+            <div><div style={styles.statNumber}>{averageBeds}</div><div style={styles.statLabel}>Average Beds</div></div>
+          </div>
+          <div style={styles.statItem} className="stat-item">
+            <div style={styles.statIconContainer}><AlertCircle size={28} /></div>
+            <div><div style={styles.statNumber}>{lowAvailabilityHospitals}</div><div style={styles.statLabel}>Low Availability</div></div>
+          </div>
         </div>
-        <div style={styles.statItem} className="stat-item">
-          <div style={styles.statNumber}>{totalBeds}</div>
-          <div style={styles.statLabel}>Available Beds</div>
-        </div>
-        <div style={styles.statItem} className="stat-item">
-          <div style={styles.statNumber}>{averageBeds}</div>
-          <div style={styles.statLabel}>Avg Beds/Hospital</div>
-        </div>
-        <div style={styles.statItem} className="stat-item">
-          <div style={styles.statNumber}>{lowAvailabilityHospitals}</div>
-          <div style={styles.statLabel}>Low Availability</div>
-        </div>
-      </div>
 
-      {loading ? (
-        <div style={styles.loadingContainer}>
-          <div style={styles.loadingSpinner}></div>
-          <h3 style={{ color: '#0f172a', marginBottom: '1rem' }}>Loading Hospitals...</h3>
-          <p>Please wait while we fetch the latest hospital data</p>
-        </div>
-      ) : filteredHospitals.length === 0 ? (
-        <div style={styles.emptyState}>
-          <h2 style={styles.emptyStateTitle}>
-            {searchQuery ? 'No Matching Hospitals' : 'No Hospitals Found'}
-          </h2>
-          <p style={styles.emptyStateSubtitle}>
-            {searchQuery 
-              ? "No hospitals match your search criteria. Try a different search term."
-              : "Get started by adding your first hospital to the network."}
-          </p>
-        </div>
-      ) : (
-        <div style={styles.hospitalsGrid}>
-          {filteredHospitals.map((hospital, index) => (
-            <div 
-              key={hospital._id || index} 
-              style={{
-                ...styles.hospitalCard,
-                animationDelay: `${index * 0.1}s`
-              }}
-              className="hospital-card"
-              onClick={() => onSelect && onSelect(hospital)}
-            >
-              <div style={styles.cardImageContainer}>
-                <img 
-                  src={getHospitalImage(hospital)} 
-                  alt={hospital.name}
-                  style={styles.cardImage}
-                  className="card-image-zoom"
-                  onError={(e) => {
-                    e.target.src = 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
-                  }}
-                />
-              </div>
-              
-              <div style={styles.cardContent}>
-                <div>
-                  <h3 style={styles.hospitalName}>{hospital.name}</h3>
-                  
-                  <div style={styles.hospitalLocation}>
-                    <span>📍</span>
-                    <span>{hospital.address?.city || hospital.location || 'City'}, {hospital.address?.state || 'State'}</span>
+        {!loading && filteredHospitals.length > 0 && (
+          <div style={styles.resultsCount}>
+            Showing {filteredHospitals.length} of {hospitals.length} hospitals{searchQuery && ` for "${searchQuery}"`}
+          </div>
+        )}
+
+        {loading ? (
+          <div style={{ textAlign: 'center', padding: '8rem 2rem' }}>
+            <div style={{ width: '80px', height: '80px', border: '6px solid rgba(226,232,240,0.3)', borderTopColor: '#3b82f6', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 2rem' }}></div>
+            <h3 style={{ margin: '0 0 1rem', fontSize: '1.8rem', color: '#0f172a' }}>Loading Hospitals...</h3>
+          </div>
+        ) : filteredHospitals.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: '6rem 2rem', background: '#fff', borderRadius: '24px', border: '2px dashed #e2e8f0' }}>
+            <h2 style={{ fontSize: '2rem', marginBottom: '1rem', color: '#334155' }}>
+              {searchQuery ? 'No Hospitals Found' : 'No Hospitals Available'}
+            </h2>
+            <p style={{ color: '#64748b', fontSize: '1.2rem' }}>
+              {searchQuery ? 'Try a different search term.' : 'The system currently has no registered hospitals.'}
+            </p>
+          </div>
+        ) : (
+          <div style={styles.hospitalsGrid}>
+            {filteredHospitals.map((hospital) => (
+              <div
+                key={hospital._id}
+                style={styles.hospitalCard}
+                className="hospital-card"
+                onClick={() => onSelect && onSelect(hospital)}
+              >
+                <div style={styles.cardImageContainer}>
+                  <img
+                    src={getHospitalImage(hospital)}
+                    alt={hospital.name}
+                    style={styles.cardImage}
+                    onError={(e) => e.target.src = 'https://images.unsplash.com/photo-1516549655669-df565bc5d1d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80'}
+                  />
+                  <div className="status-badge-image" style={styles.statusBadgeImage}>
+                    {hospital.status || 'Active'}
                   </div>
-                  
-                  <div style={styles.detailsGrid}>
-                    <div style={styles.detailItem}>
-                      <span style={styles.detailLabel}>Contact</span>
-                      <span style={styles.detailValue}>{hospital.contact || hospital.address?.contact || 'N/A'}</span>
+                </div>
+                <div style={styles.cardContent}>
+                  <div>
+                    <h3 style={styles.hospitalName} className="hospital-name">{hospital.name}</h3>
+                    <div style={styles.hospitalLocation}>
+                      <MapPin size={15} />
+                      <span>{hospital.address?.city || 'City'}, {hospital.address?.state || 'State'}</span>
                     </div>
-                    <div style={styles.detailItem}>
-                      <span style={styles.detailLabel}>Status</span>
-                      <div style={getStatusBadgeStyle(hospital.status)}>
-                        {hospital.status || 'Active'}
+                    <div style={styles.detailsGrid}>
+                      <div style={styles.detailItem}>
+                        <div style={styles.detailLeft}>
+                          <Bed size={15} style={styles.detailIcon} />
+                          <div>
+                            <div style={styles.detailLabel}>Available Beds</div>
+                            <div style={styles.detailValue}>{hospital.bedAvailability || 0} ({getBedStatusText(hospital.bedAvailability || 0)})</div>
+                          </div>
+                        </div>
+                        <div style={styles.detailLeft}>
+                          <Clock size={15} style={styles.detailIcon} />
+                          <div>
+                            <div style={styles.detailLabel}>Timings</div>
+                            <div style={styles.detailValue}>{hospital.timings || '24/7'}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div style={styles.detailItem}>
+                        <div style={styles.detailLeft}>
+                          <Phone size={15} style={styles.detailIcon} />
+                          <div>
+                            <div style={styles.detailLabel}>Contact</div>
+                            <div style={styles.detailValue}>{hospital.contact || hospital.address?.contact || 'N/A'}</div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                
-                <div style={{
-                  ...styles.bedStatus,
-                  ...getBedStatusStyle(hospital.bedAvailability || 0)
-                }}>
-                  <div style={styles.bedCount}>{hospital.bedAvailability || hospital.doctors || 0}</div>
-                  <div style={styles.bedLabel}>
-                    {getBedStatusText(hospital.bedAvailability || 0)}
+                  <div>
+                    <div style={styles.ratingContainer} className="rating-container">
+                      <div style={{ display: 'flex', alignItems: 'center' }}>
+                        {renderStars(hospital.averageRating || 0)}
+                        <span style={styles.ratingValue}>{(hospital.averageRating || 0).toFixed(1)}</span>
+                      </div>
+                      <span style={styles.ratingCount}>({hospital.ratingCount || 0} reviews)</span>
+                    </div>
+                    <button
+                      onClick={(e) => handleGiveFeedback(hospital._id, e)}
+                      style={styles.giveFeedbackButton}
+                      className="give-feedback-btn"
+                    >
+                      <Star size={16} />
+                      {hospital.ratingCount > 0 ? 'Rate & Review' : 'Be the first to rate'}
+                    </button>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {showChatbotHelper && (
-        <div style={styles.chatbotHelper}>
-          💬 Ask our AI Assistant about hospitals, doctors, queues, and appointments!
-        </div>
-      )}
-
-      <ChatBot />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
+};
+
+const styles = {
+  pageContainer: {
+    minHeight: '100vh',
+    background: 'linear-gradient(135deg, #f8fafc 0%, #eef2ff 60%, #f1f5f9 100%)',
+    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    color: '#1e293b',
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  backgroundElements: {
+    position: 'fixed',
+    inset: 0,
+    zIndex: 0,
+    pointerEvents: 'none'
+  },
+  contentWrapper: {
+    flex: '1 0 auto',
+    width: '100%',
+    maxWidth: '1440px',
+    margin: '0 auto',
+    padding: '2rem 2rem 6rem',
+    position: 'relative',
+    zIndex: 1
+  },
+  heroSection: {
+    padding: '3rem 0 4rem',
+    textAlign: 'center'
+  },
+  title: {
+    fontSize: '3.5rem',
+    fontWeight: '800',
+    background: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    margin: '0 0 1.5rem 0',
+    letterSpacing: '-0.03em',
+    lineHeight: '1.2'
+  },
+  subtitle: {
+    fontSize: '1.35rem',
+    color: '#64748b',
+    maxWidth: '860px',
+    margin: '0 auto 3rem',
+    lineHeight: '1.7',
+    fontWeight: '500'
+  },
+  searchSection: {
+    maxWidth: '860px',
+    margin: '0 auto 4rem'
+  },
+  searchContainer: {
+    position: 'relative',
+    width: '100%'
+  },
+  searchInput: {
+    width: '100%',
+    padding: '1.4rem 4rem 1.4rem 2rem',
+    background: '#ffffff',
+    border: 'none',
+    borderRadius: '20px',
+    fontSize: '1.15rem',
+    color: '#1e293b',
+    outline: 'none',
+    boxShadow: '0 12px 40px rgba(0, 0, 0, 0.1)',
+    transition: 'all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1)'
+  },
+  searchIcon: {
+    position: 'absolute',
+    right: '1.8rem',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    color: '#64748b',
+    transition: 'all 0.4s ease'
+  },
+  statsSection: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+    gap: '1.8rem',
+    marginBottom: '4rem',
+    padding: '2.5rem',
+    background: 'rgba(255, 255, 255, 0.95)',
+    backdropFilter: 'blur(12px)',
+    borderRadius: '24px',
+    border: '1px solid rgba(226, 232, 240, 0.7)',
+    boxShadow: '0 20px 50px rgba(0, 0, 0, 0.1)'
+  },
+  statItem: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1.2rem',
+    padding: '1.8rem',
+    borderRadius: '18px',
+    background: 'rgba(255, 255, 255, 0.6)',
+    border: '1px solid rgba(226, 232, 240, 0.5)',
+    transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+    cursor: 'default'
+  },
+  statIconContainer: {
+    width: '60px',
+    height: '60px',
+    borderRadius: '16px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%)',
+    color: '#1e40af',
+    transition: 'all 0.5s ease'
+  },
+  statNumber: {
+    fontSize: '2.5rem',
+    fontWeight: '800',
+    background: 'linear-gradient(135deg, #1e40af 0%, #3b82f6 100%)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    lineHeight: '1'
+  },
+  statLabel: {
+    fontSize: '1rem',
+    color: '#64748b',
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    letterSpacing: '0.6px'
+  },
+  resultsCount: {
+    fontSize: '1.1rem',
+    color: '#475569',
+    marginBottom: '2rem',
+    fontWeight: '600',
+    padding: '1rem 1.5rem',
+    background: '#f1f5f9',
+    borderRadius: '16px',
+    display: 'inline-block',
+    border: '1px solid #e2e8f0'
+  },
+  hospitalsGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: '1.8rem',
+    marginBottom: '4rem'
+  },
+  hospitalCard: {
+    background: '#ffffff',
+    borderRadius: '18px',
+    overflow: 'hidden',
+    border: '1px solid #e2e8f0',
+    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
+    transition: 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
+    cursor: 'pointer',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  cardImageContainer: {
+    height: '180px',
+    overflow: 'hidden',
+    position: 'relative'
+  },
+  cardImage: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    transition: 'transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1)'
+  },
+  statusBadgeImage: {
+    position: 'absolute',
+    top: '0.7rem',
+    right: '0.7rem',
+    padding: '0.3rem 0.8rem',
+    borderRadius: '20px',
+    fontSize: '0.72rem',
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: '0.5px',
+    background: 'rgba(255, 255, 255, 0.96)',
+    backdropFilter: 'blur(12px)',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+    transition: 'all 0.4s ease'
+  },
+  cardContent: {
+    padding: '0.9rem',
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
+  hospitalName: {
+    fontSize: '1.2rem',
+    fontWeight: '700',
+    marginBottom: '0.3rem',
+    color: '#0f172a',
+    transition: 'color 0.4s ease'
+  },
+  hospitalLocation: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.4rem',
+    color: '#64748b',
+    fontSize: '0.9rem',
+    marginBottom: '0.6rem'
+  },
+  detailsGrid: {
+    display: 'grid',
+    gridTemplateColumns: '1fr',
+    gap: '0.5rem',
+    marginBottom: '0.5rem'
+  },
+  detailItem: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: '0.8rem',
+    padding: '0.5rem',
+    background: '#f8fafc',
+    borderRadius: '12px',
+    border: '1px solid #e2e8f0',
+    transition: 'all 0.4s ease'
+  },
+  detailLeft: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    flex: 1
+  },
+  detailIcon: {
+    color: '#3b82f6',
+    flexShrink: 0
+  },
+  detailLabel: {
+    fontSize: '0.7rem',
+    color: '#94a3b8',
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    letterSpacing: '0.5px'
+  },
+  detailValue: {
+    fontSize: '0.85rem',
+    fontWeight: '600',
+    color: '#334155'
+  },
+  ratingContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '0.6rem 0.9rem',
+    background: 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)',
+    borderRadius: '12px',
+    border: '1px solid #fde68a',
+    marginBottom: '0.5rem',
+    transition: 'all 0.5s ease'
+  },
+  ratingValue: {
+    fontSize: '1.1rem',
+    fontWeight: '800',
+    color: '#92400e',
+    marginLeft: '0.4rem'
+  },
+  ratingCount: {
+    fontSize: '0.8rem',
+    color: '#92400e',
+    fontWeight: '600'
+  },
+  giveFeedbackButton: {
+    width: '100%',
+    padding: '0.75rem',
+    background: 'linear-gradient(135deg, #3b82f6 0%, #1e40af 100%)',
+    color: 'white',
+    border: 'none',
+    borderRadius: '12px',
+    fontSize: '0.9rem',
+    fontWeight: '700',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '0.4rem',
+    transition: 'all 0.5s ease',
+    position: 'relative',
+    overflow: 'hidden'
+  }
+};
+
+// Enhanced animations for title and subtitle
+if (typeof document !== 'undefined') {
+  const styleSheet = document.createElement('style');
+  styleSheet.textContent = `
+    @keyframes floatBg {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(2deg); }
+    }
+    .bg-blob {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(99, 102, 241, 0.05));
+      animation: floatBg 28s infinite ease-in-out;
+      opacity: 0.7;
+    }
+    .bg-blob:nth-child(1) {
+      width: 700px;
+      height: 700px;
+      top: -350px;
+      right: -250px;
+      animation-delay: 0s;
+    }
+    .bg-blob:nth-child(2) {
+      width: 600px;
+      height: 600px;
+      bottom: -300px;
+      left: -200px;
+      animation-delay: 14s;
+    }
+
+    .animated-title {
+      opacity: 0;
+      animation: fadeInUp 1.2s ease-out forwards;
+      animation-delay: 0.3s;
+    }
+
+    .animated-subtitle {
+      opacity: 0;
+      animation: fadeInUp 1.4s ease-out forwards;
+      animation-delay: 0.6s;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .search-input:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 70px rgba(59, 130, 246, 0.3);
+    }
+    .search-input:focus {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 80px rgba(59, 130, 246, 0.35), 0 0 0 5px rgba(59, 130, 246, 0.2);
+      border: 2px solid #3b82f6;
+    }
+    .search-input:focus ~ .search-icon {
+      color: #3b82f6;
+      transform: translateY(-50%) scale(1.4);
+    }
+
+    .stat-item:hover {
+      transform: translateY(-12px) scale(1.04);
+      box-shadow: 0 35px 70px rgba(59, 130, 246, 0.25);
+    }
+    .stat-item:hover .stat-icon-container {
+      transform: scale(1.2) rotate(12deg);
+      background: linear-gradient(135deg, #bfdbfe 0%, #93c5fd 100%);
+    }
+
+    .hospital-card:hover {
+      transform: translateY(-16px) scale(1.04);
+      box-shadow: 0 30px 70px rgba(37, 99, 235, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.3);
+    }
+    .hospital-card:hover .card-image {
+      transform: scale(1.2);
+    }
+    .hospital-card:hover .hospital-name {
+      color: #2563eb;
+    }
+    .hospital-card:hover .detail-item {
+      transform: translateY(-4px);
+      background: #f0f9ff;
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
+    }
+    .hospital-card:hover .status-badge-image {
+      transform: scale(1.15);
+      background: rgba(37, 99, 235, 0.9);
+      color: white;
+    }
+    .rating-container:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(251, 191, 36, 0.2);
+    }
+    .give-feedback-btn:hover {
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 25px 50px rgba(59, 130, 246, 0.5);
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    }
+  `;
+  document.head.appendChild(styleSheet);
 }
 
 export default HospitalList;

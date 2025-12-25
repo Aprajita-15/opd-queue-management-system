@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import HospitalList from '../components/HospitalList';
 import DepartmentList from '../components/DepartmentList';
 import DoctorList from '../components/DoctorList';
@@ -6,7 +6,7 @@ import DoctorQueue from '../components/DoctorQueue';
 import HospitalDetails from '../components/HospitalDetails';
 import axios from 'axios';
 
-function Home({ token }) {
+function Home({ token, user }) {
   const [view, setView] = useState('hospitals');
   const [selectedHospital, setSelectedHospital] = useState(null);
   const [departments, setDepartments] = useState([]);
@@ -48,24 +48,42 @@ function Home({ token }) {
       setDepartments([]);
     }
   };
-
+let styles={
+  marginTop:"2.5rem"
+}
   return (
     <div className="home">
       {view !== 'hospitals' && (
-        <button onClick={handleBack} className="back-btn">← Back</button>
+        <button onClick={handleBack} className="back-btn" style={styles}>← Back</button>
       )}
 
       {view === 'hospitals' && <HospitalList onSelect={handleHospitalSelect} />}
       
       {view === 'hospitalDetails' && selectedHospital && (
         <div>
-          <HospitalDetails hospital={selectedHospital} />
-          <DepartmentList hospitalId={selectedHospital._id} onSelect={handleDepartmentSelect} />
+          <HospitalDetails hospital={selectedHospital} user={user} />
+          <DepartmentList 
+            hospitalId={selectedHospital._id} 
+            onSelect={handleDepartmentSelect} 
+          />
         </div>
       )}
 
-      {view === 'doctors' && <DoctorList departmentId={selectedDepartment._id} onSelect={handleDoctorSelect} />}
-      {view === 'queue' && <DoctorQueue doctor={selectedDoctor} token={token} />}
+      {view === 'doctors' && (
+        <DoctorList 
+          departmentId={selectedDepartment._id} 
+          onSelect={handleDoctorSelect}
+          hospital={selectedHospital}
+          user={user}
+        />
+      )}
+      
+      {view === 'queue' && (
+        <DoctorQueue 
+          doctor={selectedDoctor} 
+          token={token} 
+        />
+      )}
     </div>
   );
 }

@@ -3,9 +3,12 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './App.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+//const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
+//console.log("Google Client ID:", googleClientId);
+
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+      <App />
   </React.StrictMode>
 );
