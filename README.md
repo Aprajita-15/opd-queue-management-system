@@ -38,6 +38,38 @@ cd frontend
 npm install  
 npm start 
 
+## Screenshots
+
+### Login Page
+![Login](./screenshots/login.jpeg)
+
+### Dashboard
+![Dashboard](./screenshots/Dashborad.jpeg)
+
+### Queue Tracking
+![Queue Tracking](./screenshots/QueueTracking.jpeg)
+
+### Add Queue / Appointment
+![Add Queue](./screenshots/AddQueue.jpeg)
+
+### Hospitals
+![Hospitals](./screenshots/Hospitals.jpeg)
+
+### Hospital Departments
+![Departments](./screenshots/Hospital Departments.jpeg)
+
+### Features / Functionality
+![Functionality](./screenshots/Functionality.jpeg)
+
+### FAQs
+![FAQs](./screenshots/FAQs.jpeg)
+
+### Feedback
+![Feedback](./screenshots/Feedback.jpeg)
+
+### Experience Page
+![Experience](./screenshots/Experience.jpeg)
+
 ## Additional Learning
 - Currently learning and working with modern technologies like Next.js, Nest.js, AWS services, containerization (Docker), and Redis
   to further enhance scalability, performance, and deployment of applications.
