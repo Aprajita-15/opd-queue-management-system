@@ -38,38 +38,40 @@ cd frontend
 npm install  
 npm start 
 
+## Additional Learning
+- Currently learning and working with modern technologies like Next.js, Nest.js, AWS services, containerization (Docker), and Redis
+  to further enhance scalability, performance, and deployment of applications.
+
 ## Screenshots
 
 ### Login Page
-![Login](./screenshots/login.jpeg)
+[Login](./screenshots/login.jpeg)
 
 ### Dashboard
-![Dashboard](./screenshots/Dashborad.jpeg)
+[Dashboard](./screenshots/Dashboard.jpeg)
 
 ### Queue Tracking
-![Queue Tracking](./screenshots/QueueTracking.jpeg)
+[Queue Tracking](./screenshots/QueueTracking.jpeg)
 
 ### Add Queue / Appointment
-![Add Queue](./screenshots/AddQueue.jpeg)
+[Add Queue](./screenshots/AddQueue.jpeg)
 
 ### Hospitals
-![Hospitals](./screenshots/Hospitals.jpeg)
+[Hospitals](./screenshots/Hospitals.jpeg)
 
 ### Hospital Departments
-![Departments](./screenshots/Hospital Departments.jpeg)
+[Departments](./screenshots/Hospital Departments.jpeg)
 
 ### Features / Functionality
 ![Functionality](./screenshots/Functionality.jpeg)
 
 ### FAQs
-![FAQs](./screenshots/FAQs.jpeg)
+[FAQs](./screenshots/FAQs.jpeg)
 
 ### Feedback
-![Feedback](./screenshots/Feedback.jpeg)
+[Feedback](./screenshots/Feedback.jpeg)
 
 ### Experience Page
-![Experience](./screenshots/Experience.jpeg)
+[Experience](./screenshots/Experience.jpeg)
 
-## Additional Learning
-- Currently learning and working with modern technologies like Next.js, Nest.js, AWS services, containerization (Docker), and Redis
-  to further enhance scalability, performance, and deployment of applications.
+
